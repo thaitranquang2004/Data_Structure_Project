@@ -1,3 +1,5 @@
+using Data_Structure_Project.Views;
+
 namespace Data_Structure_Project
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace Data_Structure_Project
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            Application.Run(new ContactForm());
         }
     }
 }
