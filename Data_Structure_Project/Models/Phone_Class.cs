@@ -12,7 +12,7 @@ namespace Data_Structure_Project.Models
 {
     internal class PhoneNode
     {
-        private string m_sdt;
+        private string m_sdt = "";
         public string SDT { get { return m_sdt; } set { m_sdt = value; } }
 
         public override string ToString()

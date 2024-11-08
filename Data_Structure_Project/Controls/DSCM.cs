@@ -9,33 +9,42 @@ namespace Data_Structure_Project.Controls
 {
     internal class DSCM <T>
     {
-        const int CAPACITY = 4;
         int n;
         T[] a;
-        public DSCM(int capacity = CAPACITY)
+        public DSCM()
         {
             this.n = 0;
-            this.a = new T[capacity];
+            this.a = new T[1];
         }
         public void arrayFull()
         {
-            if (this.n + 1 > this.a.Length)
+            if (n == a.Length)
             {
-                T[] temp = new T[this.a.Length * 2];
-                Array.Copy(this.a, temp, this.n);
-                this.a = temp;
+                T[] temp = new T[this.a.Length + 1];
+                Array.Copy(a, temp, a.Length);
+                a = temp;
             }
         }
         public void insert(T x)
         {
             arrayFull();
-            this.a[this.n++] = x;
+            a[n++] = x;
         }
-        public void remove()
+        public void remove(int idx)
         {
-            if (this.n > 0) this.n--;
-            else this.n = 0;
+            if (idx < 0 || idx >= a.Length) return;
+            for (int i = idx; i < a.Length - 1; i++)
+            {
+                a[i] = a[i + 1];
+            }
+            n--;
         }
+
+        public void edit(int idx, T x)
+        {
+            a[idx] = x;
+        }
+
         public string xuat()
         {
             string s = "";
