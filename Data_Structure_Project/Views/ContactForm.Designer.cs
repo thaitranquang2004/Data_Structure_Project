@@ -63,7 +63,7 @@
             btn_reload = new Button();
             btn_remove = new Button();
             lsbx_show = new ListBox();
-            comboBox1 = new ComboBox();
+            cbx_export = new ComboBox();
             panel_info.SuspendLayout();
             panel_status.SuspendLayout();
             SuspendLayout();
@@ -401,14 +401,14 @@
             lsbx_show.TabIndex = 13;
             lsbx_show.SelectedIndexChanged += lsbx_show_SelectedIndexChanged;
             // 
-            // comboBox1
+            // cbx_export
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "ALL", "Family", "Close Friend", "Friend", "Colleague", "Block" });
-            comboBox1.Location = new Point(514, 385);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(95, 23);
-            comboBox1.TabIndex = 14;
+            cbx_export.FormattingEnabled = true;
+            cbx_export.Items.AddRange(new object[] { "ALL", "Family", "Close Friend", "Friend", "Colleague", "Block" });
+            cbx_export.Location = new Point(514, 385);
+            cbx_export.Name = "cbx_export";
+            cbx_export.Size = new Size(95, 23);
+            cbx_export.TabIndex = 14;
             // 
             // ContactForm
             // 
@@ -416,7 +416,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(619, 454);
-            Controls.Add(comboBox1);
+            Controls.Add(cbx_export);
             Controls.Add(lsbx_show);
             Controls.Add(btn_remove);
             Controls.Add(btn_reload);
@@ -476,6 +476,6 @@
         private Label label11;
         private Button btn_remove;
         private ListBox lsbx_show;
-        private ComboBox comboBox1;
+        private ComboBox cbx_export;
     }
 }

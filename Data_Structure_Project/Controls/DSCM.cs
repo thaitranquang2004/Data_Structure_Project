@@ -45,15 +45,15 @@ namespace Data_Structure_Project.Controls
             a[idx] = x;
         }
 
-        public string xuat()
-        {
-            string s = "";
-            for (int i = 0; i < this.n; i++)
-            {
-                s += this.a[i] + "\n";
-            }
-            return s;
-        }
+        //public string xuat()
+        //{
+        //    string s = "";
+        //    for (int i = 0; i < this.n; i++)
+        //    {
+        //        s += this.a[i] + "\n";
+        //    }
+        //    return s;
+        //}
         public List<T> contact() {
             List<T> list = new List<T>();
             for (int i = 0; i < this.n; i++)

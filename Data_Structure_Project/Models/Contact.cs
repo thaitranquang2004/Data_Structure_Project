@@ -20,7 +20,6 @@ namespace Data_Structure_Project.Models
         private string m_relationship;
         private string m_gender;
         private int m_status;
-        //private PhoneNode m_phoneNode;
 
         public int Id { get { return m_id; } set { m_id = value; } }
         public string Name { get { return m_name; } set { m_name = value; } }
@@ -37,7 +36,6 @@ namespace Data_Structure_Project.Models
         public string Gender { get { return m_gender; } set { m_gender = value; } }
         public int Status { get { return m_status; } set { m_status = value; } }
 
-        //public PhoneNode Phones { get { return m_phoneNode; } set { m_phoneNode = value; } }
 
         public override string ToString()
         {

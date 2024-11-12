@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Contracts;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
@@ -34,6 +35,8 @@ namespace Data_Structure_Project.Views
             btn_remove.Visible = false;
             btn_edit.Visible = false;
             txt_search.Text = "";
+            panel_status.Visible = false;
+            checkbx_block.Checked = false;
 
         }
 
@@ -46,14 +49,27 @@ namespace Data_Structure_Project.Views
             }
         }
 
+        private bool checkmobile_new(string phonecheck)
+        {
+            foreach (Contact h in dscm.contact())
+            {
+                if (phonecheck == h.Mobile) return false;
+                else if (phonecheck == h.Mobile2 && phonecheck != "") return false;
+                else if (phonecheck == h.Mobile3 && phonecheck != "") return false;
+            }
+            return true;
+        }
+
         public ContactForm()
         {
             InitializeComponent();
             panel_info.Enabled = false;
+            cbx_export.SelectedIndex = 0;
         }
 
         private void btn_new_Click(object sender, EventArgs e)
         {
+            lsbx_show.SelectedItems.Clear();
             reset();
             panel_info.Enabled = true;
             combx_relationship.SelectedIndex = 0;
@@ -78,6 +94,8 @@ namespace Data_Structure_Project.Views
                     else if (radi_female.Checked) ct.Gender = radi_female.Text;
                     dscm.edit(lsbx_show.SelectedIndex,ct);
                     panel_info.Enabled = false;
+                    if (checkbx_block.Checked) ct.Status = 1;
+                    else ct.Status = 0;
                     reset();
                     loadlsbx();
             }
@@ -92,21 +110,28 @@ namespace Data_Structure_Project.Views
                     Random rd = new Random();
                     ct.Id = rd.Next(1, 1000);
                     ct.Name = txt_name.Text;
-                    ct.Mobile = txt_mobile.Text;
-                    ct.Mobile2 = txt_mobile2.Text;
-                    ct.Mobile3 = txt_mobile3.Text;
-                    ct.Email = txt_email.Text;
-                    ct.Email2 = txt_email2.Text;
-                    ct.Email3 = txt_email3.Text;
-                    ct.Address = txt_address.Text;
-                    ct.Relationship = combx_relationship.Text;
-                    if (radi_male.Checked) ct.Gender = radi_male.Text;
-                    else if (radi_female.Checked) ct.Gender = radi_female.Text;
-                    ct.Status = 0;
-                    dscm.insert(ct);
-                    panel_info.Enabled = false;
-                    reset();
-                    loadlsbx();
+                    if (checkmobile_new(txt_mobile.Text) == false) MessageBox.Show("SDT 1 da co!!");
+                    else if (checkmobile_new(txt_mobile2.Text) == false) MessageBox.Show("SDT 2 da co!!");
+                    else if (checkmobile_new(txt_mobile3.Text) == false) MessageBox.Show("SDT 3 da co!!");
+                    else
+                    {
+                        ct.Mobile = txt_mobile.Text;
+                        ct.Mobile2 = txt_mobile2.Text;
+                        ct.Mobile3 = txt_mobile3.Text;
+                        ct.Email = txt_email.Text;
+                        ct.Email2 = txt_email2.Text;
+                        ct.Email3 = txt_email3.Text;
+                        ct.Address = txt_address.Text;
+                        ct.Relationship = combx_relationship.Text;
+                        if (radi_male.Checked) ct.Gender = radi_male.Text;
+                        else if (radi_female.Checked) ct.Gender = radi_female.Text;
+                        ct.Status = 0;
+                        dscm.insert(ct);
+                        panel_info.Enabled = false;
+                        reset();
+                        loadlsbx();
+                    }
+                    
                 }
             }
             
@@ -131,6 +156,7 @@ namespace Data_Structure_Project.Views
             if (txt_search.Text == "") { 
                 btn_remove.Visible = true;
                 btn_edit.Visible = true;
+                panel_status.Visible = true;
             }
             
             if (lsbx_show.SelectedIndex != -1)
@@ -147,6 +173,8 @@ namespace Data_Structure_Project.Views
                 combx_relationship.Text = contact.Relationship;
                 if (contact.Gender == "Male") radi_male.Checked = true;
                 else radi_female.Checked = true;
+                if (contact.Status == 1) checkbx_block.Checked = true;
+                else checkbx_block.Checked = false;
             }
         }
 
@@ -163,7 +191,8 @@ namespace Data_Structure_Project.Views
 
         private void btn_search_Click(object sender, EventArgs e)
         {
-            reset();
+            btn_edit.Visible = false;
+            btn_remove.Visible = false;
             lsbx_show.Items.Clear();
             foreach (Contact h in dscm.contact())
             {
