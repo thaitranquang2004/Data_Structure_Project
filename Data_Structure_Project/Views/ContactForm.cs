@@ -64,7 +64,6 @@ namespace Data_Structure_Project.Views
         {
             InitializeComponent();
             panel_info.Enabled = false;
-            cbx_export.SelectedIndex = 0;
         }
 
         private void btn_new_Click(object sender, EventArgs e)
@@ -80,24 +79,24 @@ namespace Data_Structure_Project.Views
         {
             if (lsbx_show.SelectedIndex != -1)
             {
-                    Contact ct = new Contact();
-                    ct.Name = txt_name.Text;
-                    ct.Mobile = txt_mobile.Text;
-                    ct.Mobile2 = txt_mobile2.Text;
-                    ct.Mobile3 = txt_mobile3.Text;
-                    ct.Email = txt_email.Text;
-                    ct.Email2 = txt_email2.Text;
-                    ct.Email3 = txt_email3.Text;
-                    ct.Address = txt_address.Text;
-                    ct.Relationship = combx_relationship.Text;
-                    if (radi_male.Checked) ct.Gender = radi_male.Text;
-                    else if (radi_female.Checked) ct.Gender = radi_female.Text;
-                    dscm.edit(lsbx_show.SelectedIndex,ct);
-                    panel_info.Enabled = false;
-                    if (checkbx_block.Checked) ct.Status = 1;
-                    else ct.Status = 0;
-                    reset();
-                    loadlsbx();
+                Contact ct = new Contact();
+                ct.Name = txt_name.Text;
+                ct.Mobile = txt_mobile.Text;
+                ct.Mobile2 = txt_mobile2.Text;
+                ct.Mobile3 = txt_mobile3.Text;
+                ct.Email = txt_email.Text;
+                ct.Email2 = txt_email2.Text;
+                ct.Email3 = txt_email3.Text;
+                ct.Address = txt_address.Text;
+                ct.Relationship = combx_relationship.Text;
+                if (radi_male.Checked) ct.Gender = radi_male.Text;
+                else if (radi_female.Checked) ct.Gender = radi_female.Text;
+                dscm.edit(lsbx_show.SelectedIndex, ct);
+                panel_info.Enabled = false;
+                if (checkbx_block.Checked) ct.Status = 1;
+                else ct.Status = 0;
+                reset();
+                loadlsbx();
             }
             else
             {
@@ -131,10 +130,10 @@ namespace Data_Structure_Project.Views
                         reset();
                         loadlsbx();
                     }
-                    
+
                 }
             }
-            
+
 
         }
 
@@ -153,12 +152,13 @@ namespace Data_Structure_Project.Views
 
         private void lsbx_show_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (txt_search.Text == "") { 
+            if (txt_search.Text == "")
+            {
                 btn_remove.Visible = true;
                 btn_edit.Visible = true;
                 panel_status.Visible = true;
             }
-            
+
             if (lsbx_show.SelectedIndex != -1)
             {
                 Contact contact = lsbx_show.SelectedItem as Contact;
@@ -197,6 +197,108 @@ namespace Data_Structure_Project.Views
             foreach (Contact h in dscm.contact())
             {
                 if (String.Compare(txt_search.Text, h.Name, true) == 0) lsbx_show.Items.Add(h);
+            }
+        }
+
+        private bool Ghi(DSCM<Contact> contact, string path)
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
+                foreach (Contact p in contact.A)
+                {
+                    string line = p.Id + ";" + p.Name + ";" + p.Mobile + ";" + p.Mobile2 + ";" + p.Mobile3
+                        + ";" + p.Email + ";" + p.Email2 + ";" + p.Email3 + ";" + p.Address + ";" + p.Relationship + ";" + p.Gender
+                        + ";" + p.Status;
+                    sw.WriteLine(line);
+                }
+                sw.Close();
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+        private void btn_savefile_Click(object sender, EventArgs e)
+        {
+            string path = Application.StartupPath + "\\contact.txt";
+            bool result = Ghi(dscm, path);
+            if (result)
+            {
+                MessageBox.Show("Luu Thanh Cong!");
+            }
+        }
+
+        private DSCM<Contact> Doc(string path)
+        {
+            DSCM<Contact> dsp = new DSCM<Contact>();
+            try
+            {
+                StreamReader sr = new StreamReader(path, Encoding.UTF8);
+                while (true)
+                {
+                    string line = sr.ReadLine();
+                    if (line == null) break;
+                    string[] arr = line.Split(';');
+                    if (arr.Length == 12)
+                    {
+                        Contact p = new Contact();
+                        p.Id = int.Parse(arr[0]);
+                        p.Name = arr[1];
+                        p.Mobile = arr[2];
+                        p.Mobile2 = arr[3];
+                        p.Mobile3 = arr[4];
+                        p.Email = arr[5];
+                        p.Email2 = arr[6];
+                        p.Email3 = arr[7];
+                        p.Address = arr[8];
+                        p.Relationship = arr[9];
+                        p.Gender = arr[10];
+                        p.Status = int.Parse(arr[11]);
+                        dsp.insert(p);
+                    }
+                }
+                sr.Close();
+            }
+            catch (Exception ex) { throw ex; }
+            return dsp;
+        }
+
+        private void btn_loadfile_Click(object sender, EventArgs e)
+        {
+            string path = Application.StartupPath + "\\contact.txt";
+            if (System.IO.File.Exists(path))
+            {
+                dscm = Doc(path);
+                reset();
+                loadlsbx();
+            }
+        }
+
+        private bool GhiBlock(DSCM<Contact> contact, string path)
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
+                foreach (Contact p in contact.A)
+                {
+                    if (p.Status == 1)
+                    {
+                        string line = p.Mobile + " " + p.Mobile2 + " " + p.Mobile3;
+                        sw.WriteLine(line);
+                    }
+                }
+                sw.Close();
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private void btn_exportblock_Click(object sender, EventArgs e)
+        {
+            string path = Application.StartupPath + "\\PhoneNumberBlock.txt";
+            bool result = GhiBlock(dscm, path);
+            if (result)
+            {
+                MessageBox.Show("Export Thanh Cong!");
             }
         }
     }

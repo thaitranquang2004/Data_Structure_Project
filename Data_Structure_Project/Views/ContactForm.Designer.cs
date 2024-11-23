@@ -57,13 +57,14 @@
             btn_edit = new Button();
             btn_cancel = new Button();
             btn_save = new Button();
-            btn_export = new Button();
+            btn_exportblock = new Button();
             txt_search = new TextBox();
             btn_search = new Button();
             btn_reload = new Button();
             btn_remove = new Button();
             lsbx_show = new ListBox();
-            cbx_export = new ComboBox();
+            btn_savefile = new Button();
+            btn_loadfile = new Button();
             panel_info.SuspendLayout();
             panel_status.SuspendLayout();
             SuspendLayout();
@@ -344,14 +345,15 @@
             btn_save.UseVisualStyleBackColor = true;
             btn_save.Click += btn_save_Click;
             // 
-            // btn_export
+            // btn_exportblock
             // 
-            btn_export.Location = new Point(511, 411);
-            btn_export.Name = "btn_export";
-            btn_export.Size = new Size(98, 23);
-            btn_export.TabIndex = 6;
-            btn_export.Text = "Export";
-            btn_export.UseVisualStyleBackColor = true;
+            btn_exportblock.Location = new Point(511, 411);
+            btn_exportblock.Name = "btn_exportblock";
+            btn_exportblock.Size = new Size(98, 23);
+            btn_exportblock.TabIndex = 6;
+            btn_exportblock.Text = "Export Block";
+            btn_exportblock.UseVisualStyleBackColor = true;
+            btn_exportblock.Click += btn_exportblock_Click;
             // 
             // txt_search
             // 
@@ -401,14 +403,25 @@
             lsbx_show.TabIndex = 13;
             lsbx_show.SelectedIndexChanged += lsbx_show_SelectedIndexChanged;
             // 
-            // cbx_export
+            // btn_savefile
             // 
-            cbx_export.FormattingEnabled = true;
-            cbx_export.Items.AddRange(new object[] { "ALL", "Family", "Close Friend", "Friend", "Colleague", "Block" });
-            cbx_export.Location = new Point(514, 385);
-            cbx_export.Name = "cbx_export";
-            cbx_export.Size = new Size(95, 23);
-            cbx_export.TabIndex = 14;
+            btn_savefile.Location = new Point(516, 12);
+            btn_savefile.Name = "btn_savefile";
+            btn_savefile.Size = new Size(93, 23);
+            btn_savefile.TabIndex = 15;
+            btn_savefile.Text = "Save";
+            btn_savefile.UseVisualStyleBackColor = true;
+            btn_savefile.Click += btn_savefile_Click;
+            // 
+            // btn_loadfile
+            // 
+            btn_loadfile.Location = new Point(516, 41);
+            btn_loadfile.Name = "btn_loadfile";
+            btn_loadfile.Size = new Size(93, 23);
+            btn_loadfile.TabIndex = 16;
+            btn_loadfile.Text = "Load";
+            btn_loadfile.UseVisualStyleBackColor = true;
+            btn_loadfile.Click += btn_loadfile_Click;
             // 
             // ContactForm
             // 
@@ -416,13 +429,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(619, 454);
-            Controls.Add(cbx_export);
+            Controls.Add(btn_loadfile);
+            Controls.Add(btn_savefile);
             Controls.Add(lsbx_show);
             Controls.Add(btn_remove);
             Controls.Add(btn_reload);
             Controls.Add(btn_search);
             Controls.Add(txt_search);
-            Controls.Add(btn_export);
+            Controls.Add(btn_exportblock);
             Controls.Add(btn_save);
             Controls.Add(btn_cancel);
             Controls.Add(btn_edit);
@@ -452,7 +466,7 @@
         private Button btn_edit;
         private Button btn_cancel;
         private Button btn_save;
-        private Button btn_export;
+        private Button btn_exportblock;
         private TextBox txt_search;
         private Button btn_search;
         private Button btn_reload;
@@ -476,6 +490,7 @@
         private Label label11;
         private Button btn_remove;
         private ListBox lsbx_show;
-        private ComboBox cbx_export;
+        private Button btn_savefile;
+        private Button btn_loadfile;
     }
 }

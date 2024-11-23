@@ -38,6 +38,8 @@ namespace Data_Structure_Project.Controls
                 a[i] = a[i + 1];
             }
             n--;
+            T[] tmp = new T[a.Length - 1];
+            Array.Copy(a, tmp, n); a = tmp;
         }
 
         public void edit(int idx, T x)
@@ -45,15 +47,17 @@ namespace Data_Structure_Project.Controls
             a[idx] = x;
         }
 
-        //public string xuat()
-        //{
-        //    string s = "";
-        //    for (int i = 0; i < this.n; i++)
-        //    {
-        //        s += this.a[i] + "\n";
-        //    }
-        //    return s;
-        //}
+        public T[] A
+        {
+            get { return a; }
+            set { a = value; }
+        }
+
+        public int N
+        {
+            set; get;
+        }
+
         public List<T> contact() {
             List<T> list = new List<T>();
             for (int i = 0; i < this.n; i++)
