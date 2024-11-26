@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data_Structure_Project.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,9 @@ namespace Data_Structure_Project.Models
         private string m_relationship;
         private string m_gender;
         private int m_status;
+
+        public static DSCM<Mobiles> MobilesList = new DSCM<Mobiles>();
+        public static DSCM<Emails> EmailsList = new DSCM<Emails>();
 
         public int Id { get { return m_id; } set { m_id = value; } }
         public string Name { get { return m_name; } set { m_name = value; } }

@@ -396,6 +396,7 @@
             // lsbx_show
             // 
             lsbx_show.FormattingEnabled = true;
+            lsbx_show.ImeMode = ImeMode.Off;
             lsbx_show.ItemHeight = 15;
             lsbx_show.Location = new Point(12, 59);
             lsbx_show.Name = "lsbx_show";

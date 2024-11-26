@@ -47,6 +47,11 @@ namespace Data_Structure_Project.Controls
             a[idx] = x;
         }
 
+        public int getlength()
+        {
+            return a.Length;
+        }
+
         public T[] A
         {
             get { return a; }
