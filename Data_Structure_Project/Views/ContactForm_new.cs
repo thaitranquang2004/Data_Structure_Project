@@ -32,25 +32,15 @@ namespace Data_Structure_Project.Views
             radi_female.Checked = false;
             radi_male.Checked = false;
 
-            //btn_remove.Visible = false;
-            //btn_edit.Visible = false;
-            //btn_reloadnew.Enabled = false;
-            btn_editnew.Enabled = false;
-
-            //txt_search.Text = "";
+            btn_save.Visible = false;
             panel_status.Visible = false;
             checkbx_block.Checked = false;
 
-        }
+            UserListControl.id = null;
+            UserListControl.clicked = false;
 
-        private void loadlsbx()
-        {
-            //lsbx_show.Items.Clear();
-            //foreach (Contact h in dscm.contact())
-            //{
-            //    lsbx_show.Items.Add(h);
-            //}
-            loadDetails();
+            txsearch.Text = null;
+
         }
 
         private bool checkmobile_new(string phonecheck)
@@ -78,8 +68,6 @@ namespace Data_Structure_Project.Views
 
         private void btn_new_Click(object sender, EventArgs e)
         {
-            UserListControl.id = null;
-            //lsbx_show.SelectedItems.Clear();
             reset();
             panel_info.Enabled = true;
             combx_relationship.SelectedIndex = 0;
@@ -88,148 +76,87 @@ namespace Data_Structure_Project.Views
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            int i = -1;
-            if (UserListControl.id != null)
+            if (panel_info.Enabled)
             {
-                foreach (Contact contact in dscm.contact())
+                int i = -1;
+                if (UserListControl.id != null)
                 {
-                    if (int.Parse(UserListControl.id) == contact.Id)
+                    foreach (Contact contact in dscm.contact())
                     {
+                        if (int.Parse(UserListControl.id) == contact.Id)
+                        {
+                            i++;
+                            break;
+                        }
                         i++;
-                        break;
+                        if (i > dscm.getlength() - 2) i = -1;
                     }
-                    i++;
-                    if (i > dscm.getlength() - 2) i = -1;
                 }
-            }
-            
-            if (i != -1)
-            {
-                Contact ct = new Contact();
-                ct.Id = int.Parse(UserListControl.id);
-                ct.Name = txt_name.Text;
-                ct.Mobile = txt_mobile.Text;
-                ct.Mobile2 = txt_mobile2.Text;
-                ct.Mobile3 = txt_mobile3.Text;
-                ct.Email = txt_email.Text;
-                ct.Email2 = txt_email2.Text;
-                ct.Email3 = txt_email3.Text;
-                ct.Address = txt_address.Text;
-                ct.Relationship = combx_relationship.Text;
-                if (radi_male.Checked) ct.Gender = radi_male.Text;
-                else if (radi_female.Checked) ct.Gender = radi_female.Text;
-                dscm.edit(i, ct);
-                panel_info.Enabled = false;
-                if (checkbx_block.Checked) ct.Status = 1;
-                else ct.Status = 0;
-                reset();
-                loadlsbx();
-                UserListControl.clicked = false;
-            }
-            else
-            {
-                if (txt_name.Text == "") MessageBox.Show("Nhap ten!");
-                else if (txt_mobile.Text == "") MessageBox.Show("Nhap sdt!");
-                else
+
+                if (i != -1)
                 {
                     Contact ct = new Contact();
-
-                    Random rd = new Random();
-                    do
-                    {
-                        ct.Id = rd.Next(1, 5000);
-                    } while (checkid_new(ct.Id) == false);
+                    ct.Id = int.Parse(UserListControl.id);
                     ct.Name = txt_name.Text;
-                    if (checkmobile_new(txt_mobile.Text) == false) MessageBox.Show("SDT 1 da co!!");
-                    else if (checkmobile_new(txt_mobile2.Text) == false) MessageBox.Show("SDT 2 da co!!");
-                    else if (checkmobile_new(txt_mobile3.Text) == false) MessageBox.Show("SDT 3 da co!!");
+                    ct.Mobile = txt_mobile.Text;
+                    ct.Mobile2 = txt_mobile2.Text;
+                    ct.Mobile3 = txt_mobile3.Text;
+                    ct.Email = txt_email.Text;
+                    ct.Email2 = txt_email2.Text;
+                    ct.Email3 = txt_email3.Text;
+                    ct.Address = txt_address.Text;
+                    ct.Relationship = combx_relationship.Text;
+                    if (radi_male.Checked) ct.Gender = radi_male.Text;
+                    else if (radi_female.Checked) ct.Gender = radi_female.Text;
+                    dscm.edit(i, ct);
+                    panel_info.Enabled = false;
+                    if (checkbx_block.Checked) ct.Status = 1;
+                    else ct.Status = 0;
+                    reset();
+                    loadDetails();
+                }
+                else
+                {
+                    if (txt_name.Text == "") MessageBox.Show("Nhap ten!");
+                    else if (txt_mobile.Text == "") MessageBox.Show("Nhap sdt!");
                     else
                     {
-                        ct.Mobile = txt_mobile.Text;
-                        ct.Mobile2 = txt_mobile2.Text;
-                        ct.Mobile3 = txt_mobile3.Text;
-                        ct.Email = txt_email.Text;
-                        ct.Email2 = txt_email2.Text;
-                        ct.Email3 = txt_email3.Text;
-                        ct.Address = txt_address.Text;
-                        ct.Relationship = combx_relationship.Text;
-                        if (radi_male.Checked) ct.Gender = radi_male.Text;
-                        else if (radi_female.Checked) ct.Gender = radi_female.Text;
-                        ct.Status = 0;
-                        dscm.insert(ct);
-                        panel_info.Enabled = false;
-                        reset();
-                        loadlsbx();
-                    }
+                        Contact ct = new Contact();
 
+                        Random rd = new Random();
+                        do
+                        {
+                            ct.Id = rd.Next(1, 5000);
+                        } while (checkid_new(ct.Id) == false);
+                        ct.Name = txt_name.Text;
+                        if (checkmobile_new(txt_mobile.Text) == false) MessageBox.Show("SDT 1 da co!!");
+                        else if (checkmobile_new(txt_mobile2.Text) == false) MessageBox.Show("SDT 2 da co!!");
+                        else if (checkmobile_new(txt_mobile3.Text) == false) MessageBox.Show("SDT 3 da co!!");
+                        else
+                        {
+                            ct.Mobile = txt_mobile.Text;
+                            ct.Mobile2 = txt_mobile2.Text;
+                            ct.Mobile3 = txt_mobile3.Text;
+                            ct.Email = txt_email.Text;
+                            ct.Email2 = txt_email2.Text;
+                            ct.Email3 = txt_email3.Text;
+                            ct.Address = txt_address.Text;
+                            ct.Relationship = combx_relationship.Text;
+                            if (radi_male.Checked) ct.Gender = radi_male.Text;
+                            else if (radi_female.Checked) ct.Gender = radi_female.Text;
+                            ct.Status = 0;
+                            dscm.insert(ct);
+                            panel_info.Enabled = false;
+                            reset();
+                            loadDetails();
+                        }
+
+                    }
                 }
             }
+
         }
-
-        //private void btn_reload_Click(object sender, EventArgs e)
-        //{
-        //    loadlsbx();
-        //    reset();
-        //}
-
-        //private void btn_remove_Click(object sender, EventArgs e)
-        //{
-        //    dscm.remove(lsbx_show.SelectedIndex);
-        //    reset();
-        //    loadlsbx();
-        //}
-
-        //private void lsbx_show_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (txt_search.Text == "")
-        //    {
-        //        btn_remove.Visible = true;
-        //        btn_edit.Visible = true;
-        //        panel_status.Visible = true;
-        //    }
-
-        //    if (lsbx_show.SelectedIndex != -1)
-        //    {
-        //        Contact contact = lsbx_show.SelectedItem as Contact;
-        //        txt_name.Text = contact.Name;
-        //        txt_mobile.Text = contact.Mobile;
-        //        txt_mobile2.Text = contact.Mobile2;
-        //        txt_mobile3.Text = contact.Mobile3;
-        //        txt_email.Text = contact.Email;
-        //        txt_email2.Text = contact.Email2;
-        //        txt_email3.Text = contact.Email3;
-        //        txt_address.Text = contact.Address;
-        //        combx_relationship.Text = contact.Relationship;
-        //        if (contact.Gender == "Male") radi_male.Checked = true;
-        //        else radi_female.Checked = true;
-        //        if (contact.Status == 1) checkbx_block.Checked = true;
-        //        else checkbx_block.Checked = false;
-        //    }
-        //}
-
-        private void btn_cancel_Click(object sender, EventArgs e)
-        {
-            reset();
-            panel_info.Enabled = false;
-        }
-
-        //private void btn_edit_Click(object sender, EventArgs e)
-        //{
-        //    panel_info.Enabled = true;
-        //}
-
-        //private void btn_search_Click(object sender, EventArgs e)
-        //{
-        //    btn_edit.Visible = false;
-        //    btn_remove.Visible = false;
-        //    lsbx_show.Items.Clear();
-        //    foreach (Contact h in dscm.contact())
-        //    {
-        //        if (String.Compare(txt_search.Text, h.Name, true) == 0) lsbx_show.Items.Add(h);
-        //    }
-        //}
-
-        private bool Ghi(DSCM<Contact> contact, string path)
+        private bool Write(DSCM<Contact> contact, string path)
         {
             try
             {
@@ -250,14 +177,14 @@ namespace Data_Structure_Project.Views
         private void btn_savefile_Click(object sender, EventArgs e)
         {
             string path = Application.StartupPath + "\\contact.txt";
-            bool result = Ghi(dscm, path);
+            bool result = Write(dscm, path);
             if (result)
             {
                 MessageBox.Show("Luu Thanh Cong!");
             }
         }
 
-        private DSCM<Contact> Doc(string path)
+        private DSCM<Contact> Read(string path)
         {
             DSCM<Contact> dsp = new DSCM<Contact>();
             try
@@ -297,13 +224,13 @@ namespace Data_Structure_Project.Views
             string path = Application.StartupPath + "\\contact.txt";
             if (System.IO.File.Exists(path))
             {
-                dscm = Doc(path);
+                dscm = Read(path);
                 reset();
-                loadlsbx();
+                loadDetails();
             }
         }
 
-        private bool GhiBlock(DSCM<Contact> contact, string path)
+        private bool WriteBlock(DSCM<Contact> contact, string path)
         {
             try
             {
@@ -322,16 +249,6 @@ namespace Data_Structure_Project.Views
             catch (Exception ex) { throw ex; }
         }
 
-        private void btn_exportblock_Click(object sender, EventArgs e)
-        {
-            string path = Application.StartupPath + "\\PhoneNumberBlock.txt";
-            bool result = GhiBlock(dscm, path);
-            if (result)
-            {
-                MessageBox.Show("Export Thanh Cong!");
-            }
-        }
-
         private void loadDetails()
         {
             resultContainer.Controls.Clear();
@@ -348,18 +265,112 @@ namespace Data_Structure_Project.Views
         {
             if (txsearch.Text.Length >= 1)
             {
-                resultContainer.Controls.Clear();
-                UserListControl res = new UserListControl();
-                //btn_edit.Visible = false;
-                //btn_remove.Visible = false;
-                foreach (Contact h in dscm.contact())
+                int n;
+                bool successfullyParsed = int.TryParse(txsearch.Text, out n);
+                if (successfullyParsed)
                 {
-                    if (String.Compare(txsearch.Text, h.Name, true) == 0)
+                    resultContainer.Controls.Clear();
+                    List<Contact> contacts = new List<Contact>();
+                    foreach (Contact h in dscm.contact())
                     {
-                        res.details(h);
-                        resultContainer.Controls.Add(res);
+                        string phone = "";
+                        for (int i = 0; i < txsearch.Text.Length; i++)
+                        {
+                            if (i == h.Mobile.Length) break;
+                            phone += h.Mobile[i];
+                            if (i == h.Mobile.Length - 1) break;
+                        }
+                        if (String.Compare(txsearch.Text, phone, true) == 0)
+                        {
+                          contacts.Add(h);
+                        }
+                        string phone2 = "";
+                        for (int i = 0; i < txsearch.Text.Length; i++)
+                        {
+                            if (i == h.Mobile2.Length) break;
+                            phone2 += h.Mobile2[i];
+                            if (i == h.Mobile2.Length - 1) break;
+                        }
+                        if (String.Compare(txsearch.Text, phone2, true) == 0)
+                        {
+                          contacts.Add(h);
+                        }
+                        string phone3 = "";
+                        for (int i = 0; i < txsearch.Text.Length; i++)
+                        {
+                            if (i == h.Mobile3.Length) break;
+                            phone3 += h.Mobile3[i];
+                            if (i == h.Mobile3.Length - 1) break;
+                        }
+                        if (String.Compare(txsearch.Text, phone3, true) == 0)
+                        {
+                          contacts.Add(h);
+                        }
+                    }
+                    foreach (Contact h in contacts)
+                    {
+                        string phone = "";
+                        for (int i = 0; i < txsearch.Text.Length; i++)
+                        {
+                            if (i == h.Mobile.Length) break;
+                            phone += h.Mobile[i];
+                            if (i == h.Mobile.Length - 1) break;
+                        }
+                        if (String.Compare(txsearch.Text, phone, true) == 0)
+                        {
+                            UserListControl res = new UserListControl();
+                            res.detailsMobile(h);
+                            resultContainer.Controls.Add(res);
+                        }
+                        string phone2 = "";
+                        for (int i = 0; i < txsearch.Text.Length; i++)
+                        {
+                            if (i == h.Mobile2.Length) break;
+                            phone2 += h.Mobile2[i];
+                            if (i == h.Mobile2.Length - 1) break;
+                        }
+                        if (String.Compare(txsearch.Text, phone2, true) == 0)
+                        {
+                            UserListControl res = new UserListControl();
+                            res.detailsMobile2(h);
+                            resultContainer.Controls.Add(res);
+                        }
+                        string phone3 = "";
+                        for (int i = 0; i < txsearch.Text.Length; i++)
+                        {
+                            if (i == h.Mobile3.Length) break;
+                            phone3 += h.Mobile3[i];
+                            if (i == h.Mobile3.Length - 1) break;
+                        }
+                        if (String.Compare(txsearch.Text, phone3, true) == 0)
+                        {
+                            UserListControl res = new UserListControl();
+                            res.detailsMobile3(h);
+                            resultContainer.Controls.Add(res);
+                        }
+                    }
+
+                }
+                else
+                {
+                    resultContainer.Controls.Clear();
+                    foreach (Contact h in dscm.contact())
+                    {
+                        string name = "";
+                        for (int i = 0; i < txsearch.Text.Length; i++)
+                        {
+                            name += h.Name[i];
+                            if (i == h.Name.Length - 1) break;
+                        }
+                        if (String.Compare(txsearch.Text, name, true) == 0)
+                        {
+                            UserListControl res = new UserListControl();
+                            res.details(h);
+                            resultContainer.Controls.Add(res);
+                        }
                     }
                 }
+
             }
             if (txsearch.Text.Length == 0)
             {
@@ -369,16 +380,11 @@ namespace Data_Structure_Project.Views
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             if (UserListControl.clicked == true)
             {
-                if (txsearch.Text == "")
-                {
-                    btn_removenew.Enabled = true;
-                    btn_editnew.Enabled = true;
-                    panel_status.Visible = true;
-                }
+                panel_status.Visible = true;
                 foreach (Contact contact in dscm.contact())
                 {
                     if (int.Parse(UserListControl.id) == contact.Id)
@@ -402,36 +408,67 @@ namespace Data_Structure_Project.Views
             }
         }
 
-        //private void btn_reloadnew_Click(object sender, EventArgs e)
-        //{
-        //    loadlsbx();
-        //    reset();
-        //    panel_info.Enabled = false;
-        //}
-
         private void btn_editnew_Click(object sender, EventArgs e)
         {
-            panel_info.Enabled = true;
+            if (UserListControl.id != null)
+            {
+                panel_info.Enabled = true;
+                btn_save.Visible = true;
+            }
+
         }
 
         private void btn_removenew_Click(object sender, EventArgs e)
         {
-            int i = -1;
-            foreach (Contact contact in dscm.contact())
+            if (UserListControl.id != null)
             {
-                if (int.Parse(UserListControl.id) == contact.Id)
+                int i = -1;
+                foreach (Contact contact in dscm.contact())
                 {
+                    if (int.Parse(UserListControl.id) == contact.Id)
+                    {
+                        i++;
+                        break;
+                    }
                     i++;
-                    break;
+                    if (i > dscm.getlength() - 2) i = -1;
                 }
-                i++;
-                if (i > dscm.getlength() - 2) i = -1;
+                dscm.remove(i);
+                reset();
+                panel_info.Enabled = false;
+                loadDetails();
             }
-            UserListControl.clicked = false;
-            dscm.remove(i);
+
+        }
+
+        private void ContactForm_new_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ContactForm_new_Click(object sender, EventArgs e)
+        {
             reset();
             panel_info.Enabled = false;
-            loadlsbx();
+        }
+
+        private void btn_newcontact_Click(object sender, EventArgs e)
+        {
+            reset();
+            btn_save.Visible = true;
+            panel_info.Enabled = true;
+            combx_relationship.SelectedIndex = 0;
+            radi_male.Checked = true;
+        }
+
+        private void btn_exportBlockNew_Click(object sender, EventArgs e)
+        {
+            string path = Application.StartupPath + "\\PhoneNumberBlock.txt";
+            bool result = WriteBlock(dscm, path);
+            if (result)
+            {
+                MessageBox.Show("Export Thanh Cong!");
+            }
         }
     }
 }

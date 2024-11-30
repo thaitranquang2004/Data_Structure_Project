@@ -33,21 +33,15 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            panel4 = new Panel();
-            btn_save = new Button();
-            panel2 = new Panel();
-            btn_new = new Button();
-            panel3 = new Panel();
-            btn_cancel = new Button();
-            panel7 = new Panel();
-            btn_exportblock = new Button();
             panel5 = new Panel();
             btn_savefile = new Button();
             panel6 = new Panel();
             btn_loadfile = new Button();
             pictureBox2 = new PictureBox();
             label13 = new Label();
+            btn_save = new Button();
             panel_info = new Panel();
+            ptb_avatar = new DesignControls.roundedPicturebox();
             panel_status = new Panel();
             checkbx_block = new CheckBox();
             label11 = new Label();
@@ -74,27 +68,28 @@
             label12 = new Label();
             txsearch = new TextBox();
             resultContainer = new FlowLayoutPanel();
-            timer1 = new System.Windows.Forms.Timer(components);
+            timer = new System.Windows.Forms.Timer(components);
             btn_searchnew = new PictureBox();
             panel10 = new Panel();
             btn_editnew = new PictureBox();
             btn_removenew = new PictureBox();
+            btn_newcontact = new PictureBox();
+            btn_exportBlockNew = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             flowLayoutPanel1.SuspendLayout();
-            panel4.SuspendLayout();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            panel7.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel_info.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ptb_avatar).BeginInit();
             panel_status.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btn_searchnew).BeginInit();
             panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btn_editnew).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btn_removenew).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btn_newcontact).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btn_exportBlockNew).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -105,7 +100,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(738, 47);
+            panel1.Size = new Size(737, 47);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -131,10 +126,6 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.BackColor = Color.Gainsboro;
-            flowLayoutPanel1.Controls.Add(panel4);
-            flowLayoutPanel1.Controls.Add(panel2);
-            flowLayoutPanel1.Controls.Add(panel3);
-            flowLayoutPanel1.Controls.Add(panel7);
             flowLayoutPanel1.Controls.Add(panel5);
             flowLayoutPanel1.Controls.Add(panel6);
             flowLayoutPanel1.Controls.Add(pictureBox2);
@@ -142,101 +133,13 @@
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 47);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(182, 528);
+            flowLayoutPanel1.Size = new Size(182, 529);
             flowLayoutPanel1.TabIndex = 1;
-            // 
-            // panel4
-            // 
-            panel4.Controls.Add(btn_save);
-            panel4.Location = new Point(3, 3);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(222, 60);
-            panel4.TabIndex = 20;
-            // 
-            // btn_save
-            // 
-            btn_save.BackColor = Color.Gainsboro;
-            btn_save.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            btn_save.ForeColor = Color.Black;
-            btn_save.Location = new Point(-13, -9);
-            btn_save.Name = "btn_save";
-            btn_save.Size = new Size(202, 77);
-            btn_save.TabIndex = 6;
-            btn_save.Text = "    SAVE CONTACT";
-            btn_save.TextAlign = ContentAlignment.MiddleLeft;
-            btn_save.UseVisualStyleBackColor = false;
-            btn_save.Click += btn_save_Click;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(btn_new);
-            panel2.Location = new Point(3, 69);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(222, 60);
-            panel2.TabIndex = 19;
-            // 
-            // btn_new
-            // 
-            btn_new.BackColor = Color.Gainsboro;
-            btn_new.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            btn_new.ForeColor = Color.Black;
-            btn_new.Location = new Point(-13, -7);
-            btn_new.Name = "btn_new";
-            btn_new.Size = new Size(202, 75);
-            btn_new.TabIndex = 2;
-            btn_new.Text = "    NEW CONTACT";
-            btn_new.TextAlign = ContentAlignment.MiddleLeft;
-            btn_new.UseVisualStyleBackColor = false;
-            btn_new.Click += btn_new_Click;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(btn_cancel);
-            panel3.Location = new Point(3, 135);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(222, 60);
-            panel3.TabIndex = 19;
-            // 
-            // btn_cancel
-            // 
-            btn_cancel.BackColor = Color.Gainsboro;
-            btn_cancel.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            btn_cancel.ForeColor = Color.Black;
-            btn_cancel.Location = new Point(-13, -9);
-            btn_cancel.Name = "btn_cancel";
-            btn_cancel.Size = new Size(202, 79);
-            btn_cancel.TabIndex = 5;
-            btn_cancel.Text = "    CANCEL";
-            btn_cancel.TextAlign = ContentAlignment.MiddleLeft;
-            btn_cancel.UseVisualStyleBackColor = false;
-            btn_cancel.Click += btn_cancel_Click;
-            // 
-            // panel7
-            // 
-            panel7.Controls.Add(btn_exportblock);
-            panel7.Location = new Point(3, 201);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(222, 60);
-            panel7.TabIndex = 20;
-            // 
-            // btn_exportblock
-            // 
-            btn_exportblock.BackColor = Color.Gainsboro;
-            btn_exportblock.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            btn_exportblock.ForeColor = Color.Black;
-            btn_exportblock.Location = new Point(-13, -6);
-            btn_exportblock.Name = "btn_exportblock";
-            btn_exportblock.Size = new Size(202, 77);
-            btn_exportblock.TabIndex = 18;
-            btn_exportblock.Text = "    EXPORT BLOCK";
-            btn_exportblock.TextAlign = ContentAlignment.MiddleLeft;
-            btn_exportblock.UseVisualStyleBackColor = false;
-            btn_exportblock.Click += btn_exportblock_Click;
             // 
             // panel5
             // 
             panel5.Controls.Add(btn_savefile);
-            panel5.Location = new Point(3, 267);
+            panel5.Location = new Point(3, 3);
             panel5.Name = "panel5";
             panel5.Size = new Size(222, 60);
             panel5.TabIndex = 20;
@@ -258,7 +161,7 @@
             // panel6
             // 
             panel6.Controls.Add(btn_loadfile);
-            panel6.Location = new Point(3, 333);
+            panel6.Location = new Point(3, 69);
             panel6.Name = "panel6";
             panel6.Size = new Size(222, 60);
             panel6.TabIndex = 20;
@@ -280,7 +183,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.Logo_STU;
-            pictureBox2.Location = new Point(13, 400);
+            pictureBox2.Location = new Point(13, 136);
             pictureBox2.Margin = new Padding(13, 4, 4, 4);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(154, 100);
@@ -292,15 +195,31 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic);
-            label13.Location = new Point(3, 504);
+            label13.Location = new Point(3, 240);
             label13.Name = "label13";
             label13.Size = new Size(171, 13);
             label13.TabIndex = 22;
             label13.Text = " Tran Quang Thai  Nguyen Dai Tai";
             // 
+            // btn_save
+            // 
+            btn_save.BackColor = Color.White;
+            btn_save.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+            btn_save.ForeColor = Color.Black;
+            btn_save.Location = new Point(184, 472);
+            btn_save.Name = "btn_save";
+            btn_save.Size = new Size(70, 39);
+            btn_save.TabIndex = 6;
+            btn_save.Text = "SAVE";
+            btn_save.UseVisualStyleBackColor = false;
+            btn_save.Visible = false;
+            btn_save.Click += btn_save_Click;
+            // 
             // panel_info
             // 
             panel_info.BackColor = Color.Gainsboro;
+            panel_info.Controls.Add(btn_save);
+            panel_info.Controls.Add(ptb_avatar);
             panel_info.Controls.Add(panel_status);
             panel_info.Controls.Add(label10);
             panel_info.Controls.Add(label9);
@@ -325,8 +244,18 @@
             panel_info.Controls.Add(label12);
             panel_info.Location = new Point(197, 46);
             panel_info.Name = "panel_info";
-            panel_info.Size = new Size(278, 529);
+            panel_info.Size = new Size(278, 531);
             panel_info.TabIndex = 20;
+            // 
+            // ptb_avatar
+            // 
+            ptb_avatar.Image = Properties.Resources.icons8_user_35;
+            ptb_avatar.Location = new Point(211, 13);
+            ptb_avatar.Name = "ptb_avatar";
+            ptb_avatar.Size = new Size(54, 48);
+            ptb_avatar.SizeMode = PictureBoxSizeMode.StretchImage;
+            ptb_avatar.TabIndex = 29;
+            ptb_avatar.TabStop = false;
             // 
             // panel_status
             // 
@@ -532,7 +461,7 @@
             // 
             txt_name.Location = new Point(10, 29);
             txt_name.Name = "txt_name";
-            txt_name.Size = new Size(255, 23);
+            txt_name.Size = new Size(185, 23);
             txt_name.TabIndex = 1;
             // 
             // label12
@@ -563,11 +492,11 @@
             resultContainer.Size = new Size(249, 434);
             resultContainer.TabIndex = 23;
             // 
-            // timer1
+            // timer
             // 
-            timer1.Enabled = true;
-            timer1.Interval = 1;
-            timer1.Tick += timer1_Tick;
+            timer.Enabled = true;
+            timer.Interval = 1;
+            timer.Tick += timer_Tick;
             // 
             // btn_searchnew
             // 
@@ -575,7 +504,7 @@
             btn_searchnew.Image = Properties.Resources.icons8_search_30;
             btn_searchnew.Location = new Point(678, 46);
             btn_searchnew.Name = "btn_searchnew";
-            btn_searchnew.Size = new Size(60, 45);
+            btn_searchnew.Size = new Size(61, 45);
             btn_searchnew.SizeMode = PictureBoxSizeMode.CenterImage;
             btn_searchnew.TabIndex = 25;
             btn_searchnew.TabStop = false;
@@ -592,11 +521,10 @@
             // btn_editnew
             // 
             btn_editnew.BackColor = Color.Gainsboro;
-            btn_editnew.Enabled = false;
             btn_editnew.Image = Properties.Resources.icons8_edit_30;
-            btn_editnew.Location = new Point(490, 521);
+            btn_editnew.Location = new Point(556, 521);
             btn_editnew.Name = "btn_editnew";
-            btn_editnew.Size = new Size(132, 55);
+            btn_editnew.Size = new Size(62, 56);
             btn_editnew.SizeMode = PictureBoxSizeMode.CenterImage;
             btn_editnew.TabIndex = 25;
             btn_editnew.TabStop = false;
@@ -605,22 +533,47 @@
             // btn_removenew
             // 
             btn_removenew.BackColor = Color.Gainsboro;
-            btn_removenew.Enabled = false;
             btn_removenew.Image = Properties.Resources.icons8_delete_30;
-            btn_removenew.Location = new Point(620, 521);
+            btn_removenew.Location = new Point(618, 521);
             btn_removenew.Name = "btn_removenew";
-            btn_removenew.Size = new Size(119, 56);
+            btn_removenew.Size = new Size(62, 56);
             btn_removenew.SizeMode = PictureBoxSizeMode.CenterImage;
             btn_removenew.TabIndex = 25;
             btn_removenew.TabStop = false;
             btn_removenew.Click += btn_removenew_Click;
+            // 
+            // btn_newcontact
+            // 
+            btn_newcontact.BackColor = Color.Gainsboro;
+            btn_newcontact.Image = Properties.Resources.icons8_add_30;
+            btn_newcontact.Location = new Point(490, 521);
+            btn_newcontact.Name = "btn_newcontact";
+            btn_newcontact.Size = new Size(66, 56);
+            btn_newcontact.SizeMode = PictureBoxSizeMode.CenterImage;
+            btn_newcontact.TabIndex = 27;
+            btn_newcontact.TabStop = false;
+            btn_newcontact.Click += btn_newcontact_Click;
+            // 
+            // btn_exportBlockNew
+            // 
+            btn_exportBlockNew.BackColor = Color.Gainsboro;
+            btn_exportBlockNew.Image = Properties.Resources.icons8_export_30;
+            btn_exportBlockNew.Location = new Point(678, 521);
+            btn_exportBlockNew.Name = "btn_exportBlockNew";
+            btn_exportBlockNew.Size = new Size(61, 56);
+            btn_exportBlockNew.SizeMode = PictureBoxSizeMode.CenterImage;
+            btn_exportBlockNew.TabIndex = 28;
+            btn_exportBlockNew.TabStop = false;
+            btn_exportBlockNew.Click += btn_exportBlockNew_Click;
             // 
             // ContactForm_new
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(738, 575);
+            ClientSize = new Size(737, 576);
+            Controls.Add(btn_exportBlockNew);
+            Controls.Add(btn_newcontact);
             Controls.Add(btn_removenew);
             Controls.Add(btn_editnew);
             Controls.Add(panel10);
@@ -632,20 +585,19 @@
             ForeColor = Color.Black;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "ContactForm_new";
+            Load += ContactForm_new_Load;
+            Click += ContactForm_new_Click;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel7.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel_info.ResumeLayout(false);
             panel_info.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ptb_avatar).EndInit();
             panel_status.ResumeLayout(false);
             panel_status.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btn_searchnew).EndInit();
@@ -653,6 +605,8 @@
             panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btn_editnew).EndInit();
             ((System.ComponentModel.ISupportInitialize)btn_removenew).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btn_newcontact).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btn_exportBlockNew).EndInit();
             ResumeLayout(false);
         }
 
@@ -661,18 +615,11 @@
         private Panel panel1;
         private Label label1;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button btn_new;
-        private Button btn_cancel;
         private Button btn_save;
         private Button btn_savefile;
         private Button btn_loadfile;
-        private Button btn_exportblock;
-        private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
         private Panel panel5;
         private Panel panel6;
-        private Panel panel7;
         private PictureBox pictureBox1;
         private Panel panel_info;
         private Panel panel_status;
@@ -703,10 +650,13 @@
         private Label label13;
         private TextBox txsearch;
         private FlowLayoutPanel resultContainer;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer;
         private PictureBox btn_searchnew;
         private Panel panel10;
         private PictureBox btn_editnew;
         private PictureBox btn_removenew;
+        private DesignControls.roundedPicturebox ptb_avatar;
+        private PictureBox btn_newcontact;
+        private PictureBox btn_exportBlockNew;
     }
 }

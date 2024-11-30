@@ -28,6 +28,27 @@ namespace Data_Structure_Project.DesignControls
             temp_id = d.Id.ToString();
         }
 
+        public void detailsMobile(Contact d)
+        {
+            lbname.Text = d.Name;
+            lbrelationship.Text = d.Mobile + " (1st Mobile)";
+            temp_id = d.Id.ToString();
+        }
+
+        public void detailsMobile2(Contact d)
+        {
+            lbname.Text = d.Name;
+            lbrelationship.Text = d.Mobile2 + " (2nd Mobile)";
+            temp_id = d.Id.ToString();
+        }
+
+        public void detailsMobile3(Contact d)
+        {
+            lbname.Text = d.Name;
+            lbrelationship.Text = d.Mobile3 + " (3rd Mobile)";
+            temp_id = d.Id.ToString();
+        }
+
         public void searchResult(string key)
         {
             Contact contact = new Contact();

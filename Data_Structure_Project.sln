@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_Structure_Project", "Data_Structure_Project\Data_Structure_Project.csproj", "{A1DEA69E-52DE-476C-A6D3-0A2AA3ED9116}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data_Structure_Project", "Data_Structure_Project\Data_Structure_Project.csproj", "{A1DEA69E-52DE-476C-A6D3-0A2AA3ED9116}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
