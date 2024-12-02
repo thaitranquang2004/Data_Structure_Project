@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Data_Structure_Project.Views
 {
@@ -95,6 +96,8 @@ namespace Data_Structure_Project.Views
 
                 if (i != -1)
                 {
+                    int n;
+                    bool successfullyParsed = int.TryParse(txt_mobile.Text, out n);
                     Contact ct = new Contact();
                     ct.Id = int.Parse(UserListControl.id);
                     ct.Name = txt_name.Text;
@@ -282,7 +285,7 @@ namespace Data_Structure_Project.Views
                         }
                         if (String.Compare(txsearch.Text, phone, true) == 0)
                         {
-                          contacts.Add(h);
+                            contacts.Add(h);
                         }
                         string phone2 = "";
                         for (int i = 0; i < txsearch.Text.Length; i++)
@@ -293,7 +296,7 @@ namespace Data_Structure_Project.Views
                         }
                         if (String.Compare(txsearch.Text, phone2, true) == 0)
                         {
-                          contacts.Add(h);
+                            contacts.Add(h);
                         }
                         string phone3 = "";
                         for (int i = 0; i < txsearch.Text.Length; i++)
@@ -304,7 +307,7 @@ namespace Data_Structure_Project.Views
                         }
                         if (String.Compare(txsearch.Text, phone3, true) == 0)
                         {
-                          contacts.Add(h);
+                            contacts.Add(h);
                         }
                     }
                     foreach (Contact h in contacts)
@@ -468,7 +471,226 @@ namespace Data_Structure_Project.Views
             if (result)
             {
                 MessageBox.Show("Export Thanh Cong!");
+
+                var p = new Process();
+                p.StartInfo = new ProcessStartInfo(path)
+                {
+                    UseShellExecute = true
+                };
+                p.Start();
             }
+        }
+
+        private void ContactForm_new_MouseHover(object sender, EventArgs e)
+        {
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Click: Cancel anything";
+        }
+
+        private void ContactForm_new_MouseLeave(object sender, EventArgs e)
+        {
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+        }
+
+        private void btn_newcontact_MouseHover(object sender, EventArgs e)
+        {
+            btn_newcontact.BackColor = Color.Gray;
+            lb_namefeat.Text = "NEW CONTACT";
+            lb_contentfeat.Text = "Click: Create a new contact!";
+        }
+
+        private void btn_newcontact_MouseLeave(object sender, EventArgs e)
+        {
+            btn_newcontact.BackColor = Color.Gainsboro;
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+        }
+
+        private void btn_editnew_MouseHover(object sender, EventArgs e)
+        {
+            btn_editnew.BackColor = Color.Gray;
+            lb_namefeat.Text = "EDIT CONTACT";
+            lb_contentfeat.Text = "Click: Edit contact!";
+        }
+
+        private void btn_editnew_MouseLeave(object sender, EventArgs e)
+        {
+            btn_editnew.BackColor = Color.Gainsboro;
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+        }
+
+        private void btn_removenew_MouseHover(object sender, EventArgs e)
+        {
+            btn_removenew.BackColor = Color.Gray;
+            lb_namefeat.Font = new Font("Segoe UI", 14, FontStyle.Bold);
+            lb_namefeat.Text = "REMOVE CONTACT";
+            lb_contentfeat.Text = "Click: Remove contact!";
+        }
+
+        private void btn_removenew_MouseLeave(object sender, EventArgs e)
+        {
+            btn_removenew.BackColor = Color.Gainsboro;
+            lb_namefeat.Font = new Font("Segoe UI", 16, FontStyle.Bold);
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+        }
+
+        private void btn_exportBlockNew_MouseHover(object sender, EventArgs e)
+        {
+            btn_exportBlockNew.BackColor = Color.Gray;
+            lb_namefeat.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            lb_namefeat.Text = "EXPORT BLOCK-CONTACT";
+            lb_contentfeat.Text = "Click: Export to file text!";
+        }
+
+        private void btn_exportBlockNew_MouseLeave(object sender, EventArgs e)
+        {
+            btn_exportBlockNew.BackColor = Color.Gainsboro;
+            lb_namefeat.Font = new Font("Segoe UI", 16, FontStyle.Bold);
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+        }
+
+        private void txt_name_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_name_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_mobile_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_mobile_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_mobile2_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_mobile2_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_mobile3_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_mobile3_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_email_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_email_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_email2_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_email2_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_email3_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_email3_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_address_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_address_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void combx_relationship_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void combx_relationship_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radi_male_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radi_male_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radi_female_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radi_female_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkbx_block_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkbx_block_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_save_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_save_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txsearch_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txsearch_MouseLeave(object sender, EventArgs e)
+        {
+
         }
     }
 }

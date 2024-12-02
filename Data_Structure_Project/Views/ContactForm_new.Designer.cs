@@ -34,11 +34,13 @@
             label1 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel5 = new Panel();
-            btn_savefile = new Button();
+            lb_namefeat = new Label();
             panel6 = new Panel();
-            btn_loadfile = new Button();
+            lb_contentfeat = new Label();
             pictureBox2 = new PictureBox();
             label13 = new Label();
+            btn_savefile = new Button();
+            btn_loadfile = new Button();
             btn_save = new Button();
             panel_info = new Panel();
             ptb_avatar = new DesignControls.roundedPicturebox();
@@ -100,7 +102,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(737, 47);
+            panel1.Size = new Size(932, 47);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -120,7 +122,7 @@
             label1.Location = new Point(56, 6);
             label1.Name = "label1";
             label1.Size = new Size(169, 37);
-            label1.TabIndex = 2;
+            label1.TabIndex = 0;
             label1.Text = "CONTACTS";
             // 
             // flowLayoutPanel1
@@ -133,57 +135,48 @@
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 47);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(182, 529);
+            flowLayoutPanel1.Size = new Size(200, 529);
             flowLayoutPanel1.TabIndex = 1;
             // 
             // panel5
             // 
-            panel5.Controls.Add(btn_savefile);
+            panel5.Controls.Add(lb_namefeat);
             panel5.Location = new Point(3, 3);
             panel5.Name = "panel5";
-            panel5.Size = new Size(222, 60);
-            panel5.TabIndex = 20;
+            panel5.Size = new Size(188, 60);
+            panel5.TabIndex = 2;
             // 
-            // btn_savefile
+            // lb_namefeat
             // 
-            btn_savefile.BackColor = Color.Gainsboro;
-            btn_savefile.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            btn_savefile.ForeColor = Color.DimGray;
-            btn_savefile.Location = new Point(-13, -8);
-            btn_savefile.Name = "btn_savefile";
-            btn_savefile.Size = new Size(202, 76);
-            btn_savefile.TabIndex = 16;
-            btn_savefile.Text = "    SAVE FILE";
-            btn_savefile.TextAlign = ContentAlignment.MiddleLeft;
-            btn_savefile.UseVisualStyleBackColor = false;
-            btn_savefile.Click += btn_savefile_Click;
+            lb_namefeat.AutoSize = true;
+            lb_namefeat.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lb_namefeat.Location = new Point(6, 14);
+            lb_namefeat.Name = "lb_namefeat";
+            lb_namefeat.Size = new Size(175, 30);
+            lb_namefeat.TabIndex = 0;
+            lb_namefeat.Text = "CONTACT BOOK";
             // 
             // panel6
             // 
-            panel6.Controls.Add(btn_loadfile);
+            panel6.Controls.Add(lb_contentfeat);
             panel6.Location = new Point(3, 69);
             panel6.Name = "panel6";
-            panel6.Size = new Size(222, 60);
-            panel6.TabIndex = 20;
+            panel6.Size = new Size(188, 323);
+            panel6.TabIndex = 2;
             // 
-            // btn_loadfile
+            // lb_contentfeat
             // 
-            btn_loadfile.BackColor = Color.Gainsboro;
-            btn_loadfile.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            btn_loadfile.ForeColor = Color.DimGray;
-            btn_loadfile.Location = new Point(-13, -17);
-            btn_loadfile.Name = "btn_loadfile";
-            btn_loadfile.Size = new Size(202, 85);
-            btn_loadfile.TabIndex = 17;
-            btn_loadfile.Text = "    LOAD FILE";
-            btn_loadfile.TextAlign = ContentAlignment.MiddleLeft;
-            btn_loadfile.UseVisualStyleBackColor = false;
-            btn_loadfile.Click += btn_loadfile_Click;
+            lb_contentfeat.AutoSize = true;
+            lb_contentfeat.Location = new Point(9, 11);
+            lb_contentfeat.Name = "lb_contentfeat";
+            lb_contentfeat.Size = new Size(71, 15);
+            lb_contentfeat.TabIndex = 0;
+            lb_contentfeat.Text = "Hello world!";
             // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.Logo_STU;
-            pictureBox2.Location = new Point(13, 136);
+            pictureBox2.Location = new Point(13, 399);
             pictureBox2.Margin = new Padding(13, 4, 4, 4);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(154, 100);
@@ -195,11 +188,39 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic);
-            label13.Location = new Point(3, 240);
+            label13.Location = new Point(3, 503);
             label13.Name = "label13";
             label13.Size = new Size(171, 13);
-            label13.TabIndex = 22;
+            label13.TabIndex = 1;
             label13.Text = " Tran Quang Thai  Nguyen Dai Tai";
+            // 
+            // btn_savefile
+            // 
+            btn_savefile.BackColor = Color.Gainsboro;
+            btn_savefile.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+            btn_savefile.ForeColor = Color.DimGray;
+            btn_savefile.Location = new Point(768, 273);
+            btn_savefile.Name = "btn_savefile";
+            btn_savefile.Size = new Size(148, 76);
+            btn_savefile.TabIndex = 16;
+            btn_savefile.Text = "    SAVE FILE";
+            btn_savefile.TextAlign = ContentAlignment.MiddleLeft;
+            btn_savefile.UseVisualStyleBackColor = false;
+            btn_savefile.Click += btn_savefile_Click;
+            // 
+            // btn_loadfile
+            // 
+            btn_loadfile.BackColor = Color.Gainsboro;
+            btn_loadfile.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
+            btn_loadfile.ForeColor = Color.DimGray;
+            btn_loadfile.Location = new Point(768, 423);
+            btn_loadfile.Name = "btn_loadfile";
+            btn_loadfile.Size = new Size(148, 85);
+            btn_loadfile.TabIndex = 17;
+            btn_loadfile.Text = "    LOAD FILE";
+            btn_loadfile.TextAlign = ContentAlignment.MiddleLeft;
+            btn_loadfile.UseVisualStyleBackColor = false;
+            btn_loadfile.Click += btn_loadfile_Click;
             // 
             // btn_save
             // 
@@ -209,11 +230,13 @@
             btn_save.Location = new Point(184, 472);
             btn_save.Name = "btn_save";
             btn_save.Size = new Size(70, 39);
-            btn_save.TabIndex = 6;
+            btn_save.TabIndex = 17;
             btn_save.Text = "SAVE";
             btn_save.UseVisualStyleBackColor = false;
             btn_save.Visible = false;
             btn_save.Click += btn_save_Click;
+            btn_save.MouseLeave += btn_save_MouseLeave;
+            btn_save.MouseHover += btn_save_MouseHover;
             // 
             // panel_info
             // 
@@ -242,7 +265,7 @@
             panel_info.Controls.Add(label2);
             panel_info.Controls.Add(txt_name);
             panel_info.Controls.Add(label12);
-            panel_info.Location = new Point(197, 46);
+            panel_info.Location = new Point(217, 47);
             panel_info.Name = "panel_info";
             panel_info.Size = new Size(278, 531);
             panel_info.TabIndex = 20;
@@ -276,6 +299,8 @@
             checkbx_block.TabIndex = 30;
             checkbx_block.Text = "Block";
             checkbx_block.UseVisualStyleBackColor = true;
+            checkbx_block.MouseLeave += checkbx_block_MouseLeave;
+            checkbx_block.MouseHover += checkbx_block_MouseHover;
             // 
             // label11
             // 
@@ -332,28 +357,36 @@
             txt_email3.Location = new Point(10, 325);
             txt_email3.Name = "txt_email3";
             txt_email3.Size = new Size(255, 23);
-            txt_email3.TabIndex = 23;
+            txt_email3.TabIndex = 12;
+            txt_email3.MouseLeave += txt_email3_MouseLeave;
+            txt_email3.MouseHover += txt_email3_MouseHover;
             // 
             // txt_mobile3
             // 
             txt_mobile3.Location = new Point(10, 178);
             txt_mobile3.Name = "txt_mobile3";
             txt_mobile3.Size = new Size(255, 23);
-            txt_mobile3.TabIndex = 22;
+            txt_mobile3.TabIndex = 9;
+            txt_mobile3.MouseLeave += txt_mobile3_MouseLeave;
+            txt_mobile3.MouseHover += txt_mobile3_MouseHover;
             // 
             // txt_email2
             // 
             txt_email2.Location = new Point(10, 276);
             txt_email2.Name = "txt_email2";
             txt_email2.Size = new Size(255, 23);
-            txt_email2.TabIndex = 21;
+            txt_email2.TabIndex = 11;
+            txt_email2.MouseLeave += txt_email2_MouseLeave;
+            txt_email2.MouseHover += txt_email2_MouseHover;
             // 
             // txt_mobile2
             // 
             txt_mobile2.Location = new Point(10, 129);
             txt_mobile2.Name = "txt_mobile2";
             txt_mobile2.Size = new Size(255, 23);
-            txt_mobile2.TabIndex = 20;
+            txt_mobile2.TabIndex = 8;
+            txt_mobile2.MouseLeave += txt_mobile2_MouseLeave;
+            txt_mobile2.MouseHover += txt_mobile2_MouseHover;
             // 
             // radi_female
             // 
@@ -361,10 +394,12 @@
             radi_female.Location = new Point(145, 441);
             radi_female.Name = "radi_female";
             radi_female.Size = new Size(63, 19);
-            radi_female.TabIndex = 19;
+            radi_female.TabIndex = 16;
             radi_female.TabStop = true;
             radi_female.Text = "Female";
             radi_female.UseVisualStyleBackColor = true;
+            radi_female.MouseLeave += radi_female_MouseLeave;
+            radi_female.MouseHover += radi_female_MouseHover;
             // 
             // radi_male
             // 
@@ -372,10 +407,12 @@
             radi_male.Location = new Point(88, 441);
             radi_male.Name = "radi_male";
             radi_male.Size = new Size(51, 19);
-            radi_male.TabIndex = 18;
+            radi_male.TabIndex = 15;
             radi_male.TabStop = true;
             radi_male.Text = "Male";
             radi_male.UseVisualStyleBackColor = true;
+            radi_male.MouseLeave += radi_male_MouseLeave;
+            radi_male.MouseHover += radi_male_MouseHover;
             // 
             // label6
             // 
@@ -394,7 +431,9 @@
             combx_relationship.Location = new Point(131, 406);
             combx_relationship.Name = "combx_relationship";
             combx_relationship.Size = new Size(134, 23);
-            combx_relationship.TabIndex = 16;
+            combx_relationship.TabIndex = 14;
+            combx_relationship.MouseLeave += combx_relationship_MouseLeave;
+            combx_relationship.MouseHover += combx_relationship_MouseHover;
             // 
             // label5
             // 
@@ -421,7 +460,9 @@
             txt_address.Location = new Point(10, 377);
             txt_address.Name = "txt_address";
             txt_address.Size = new Size(255, 23);
-            txt_address.TabIndex = 12;
+            txt_address.TabIndex = 13;
+            txt_address.MouseLeave += txt_address_MouseLeave;
+            txt_address.MouseHover += txt_address_MouseHover;
             // 
             // label3
             // 
@@ -438,14 +479,18 @@
             txt_email.Location = new Point(10, 227);
             txt_email.Name = "txt_email";
             txt_email.Size = new Size(255, 23);
-            txt_email.TabIndex = 4;
+            txt_email.TabIndex = 10;
+            txt_email.MouseLeave += txt_email_MouseLeave;
+            txt_email.MouseHover += txt_email_MouseHover;
             // 
             // txt_mobile
             // 
             txt_mobile.Location = new Point(10, 80);
             txt_mobile.Name = "txt_mobile";
             txt_mobile.Size = new Size(255, 23);
-            txt_mobile.TabIndex = 3;
+            txt_mobile.TabIndex = 7;
+            txt_mobile.MouseLeave += txt_mobile_MouseLeave;
+            txt_mobile.MouseHover += txt_mobile_MouseHover;
             // 
             // label2
             // 
@@ -462,7 +507,9 @@
             txt_name.Location = new Point(10, 29);
             txt_name.Name = "txt_name";
             txt_name.Size = new Size(185, 23);
-            txt_name.TabIndex = 1;
+            txt_name.TabIndex = 6;
+            txt_name.MouseLeave += txt_name_MouseLeave;
+            txt_name.MouseHover += txt_name_MouseHover;
             // 
             // label12
             // 
@@ -471,7 +518,7 @@
             label12.Location = new Point(10, 6);
             label12.Name = "label12";
             label12.Size = new Size(58, 20);
-            label12.TabIndex = 0;
+            label12.TabIndex = 5;
             label12.Text = "NAME ";
             // 
             // txsearch
@@ -482,12 +529,14 @@
             txsearch.Size = new Size(181, 16);
             txsearch.TabIndex = 22;
             txsearch.TextChanged += txsearch_TextChanged;
+            txsearch.MouseLeave += txsearch_MouseLeave;
+            txsearch.MouseHover += txsearch_MouseHover;
             // 
             // resultContainer
             // 
             resultContainer.AutoScroll = true;
             resultContainer.BackColor = Color.White;
-            resultContainer.Location = new Point(490, 91);
+            resultContainer.Location = new Point(512, 91);
             resultContainer.Name = "resultContainer";
             resultContainer.Size = new Size(249, 434);
             resultContainer.TabIndex = 23;
@@ -502,7 +551,7 @@
             // 
             btn_searchnew.BackColor = Color.Gainsboro;
             btn_searchnew.Image = Properties.Resources.icons8_search_30;
-            btn_searchnew.Location = new Point(678, 46);
+            btn_searchnew.Location = new Point(700, 46);
             btn_searchnew.Name = "btn_searchnew";
             btn_searchnew.Size = new Size(61, 45);
             btn_searchnew.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -513,7 +562,7 @@
             // 
             panel10.BackColor = Color.White;
             panel10.Controls.Add(txsearch);
-            panel10.Location = new Point(490, 47);
+            panel10.Location = new Point(512, 47);
             panel10.Name = "panel10";
             panel10.Size = new Size(187, 42);
             panel10.TabIndex = 26;
@@ -522,56 +571,66 @@
             // 
             btn_editnew.BackColor = Color.Gainsboro;
             btn_editnew.Image = Properties.Resources.icons8_edit_30;
-            btn_editnew.Location = new Point(556, 521);
+            btn_editnew.Location = new Point(578, 521);
             btn_editnew.Name = "btn_editnew";
             btn_editnew.Size = new Size(62, 56);
             btn_editnew.SizeMode = PictureBoxSizeMode.CenterImage;
             btn_editnew.TabIndex = 25;
             btn_editnew.TabStop = false;
             btn_editnew.Click += btn_editnew_Click;
+            btn_editnew.MouseLeave += btn_editnew_MouseLeave;
+            btn_editnew.MouseHover += btn_editnew_MouseHover;
             // 
             // btn_removenew
             // 
             btn_removenew.BackColor = Color.Gainsboro;
             btn_removenew.Image = Properties.Resources.icons8_delete_30;
-            btn_removenew.Location = new Point(618, 521);
+            btn_removenew.Location = new Point(640, 521);
             btn_removenew.Name = "btn_removenew";
             btn_removenew.Size = new Size(62, 56);
             btn_removenew.SizeMode = PictureBoxSizeMode.CenterImage;
             btn_removenew.TabIndex = 25;
             btn_removenew.TabStop = false;
             btn_removenew.Click += btn_removenew_Click;
+            btn_removenew.MouseLeave += btn_removenew_MouseLeave;
+            btn_removenew.MouseHover += btn_removenew_MouseHover;
             // 
             // btn_newcontact
             // 
             btn_newcontact.BackColor = Color.Gainsboro;
             btn_newcontact.Image = Properties.Resources.icons8_add_30;
-            btn_newcontact.Location = new Point(490, 521);
+            btn_newcontact.Location = new Point(512, 521);
             btn_newcontact.Name = "btn_newcontact";
             btn_newcontact.Size = new Size(66, 56);
             btn_newcontact.SizeMode = PictureBoxSizeMode.CenterImage;
             btn_newcontact.TabIndex = 27;
             btn_newcontact.TabStop = false;
             btn_newcontact.Click += btn_newcontact_Click;
+            btn_newcontact.MouseLeave += btn_newcontact_MouseLeave;
+            btn_newcontact.MouseHover += btn_newcontact_MouseHover;
             // 
             // btn_exportBlockNew
             // 
             btn_exportBlockNew.BackColor = Color.Gainsboro;
             btn_exportBlockNew.Image = Properties.Resources.icons8_export_30;
-            btn_exportBlockNew.Location = new Point(678, 521);
+            btn_exportBlockNew.Location = new Point(700, 521);
             btn_exportBlockNew.Name = "btn_exportBlockNew";
             btn_exportBlockNew.Size = new Size(61, 56);
             btn_exportBlockNew.SizeMode = PictureBoxSizeMode.CenterImage;
             btn_exportBlockNew.TabIndex = 28;
             btn_exportBlockNew.TabStop = false;
             btn_exportBlockNew.Click += btn_exportBlockNew_Click;
+            btn_exportBlockNew.MouseLeave += btn_exportBlockNew_MouseLeave;
+            btn_exportBlockNew.MouseHover += btn_exportBlockNew_MouseHover;
             // 
             // ContactForm_new
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(737, 576);
+            ClientSize = new Size(932, 576);
+            Controls.Add(btn_savefile);
+            Controls.Add(btn_loadfile);
             Controls.Add(btn_exportBlockNew);
             Controls.Add(btn_newcontact);
             Controls.Add(btn_removenew);
@@ -586,14 +645,17 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "ContactForm_new";
             Load += ContactForm_new_Load;
-            Click += ContactForm_new_Click;
+            MouseLeave += ContactForm_new_MouseLeave;
+            MouseHover += ContactForm_new_MouseHover;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
             panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             panel6.ResumeLayout(false);
+            panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel_info.ResumeLayout(false);
             panel_info.PerformLayout();
@@ -658,5 +720,7 @@
         private DesignControls.roundedPicturebox ptb_avatar;
         private PictureBox btn_newcontact;
         private PictureBox btn_exportBlockNew;
+        private Label lb_namefeat;
+        private Label lb_contentfeat;
     }
 }
