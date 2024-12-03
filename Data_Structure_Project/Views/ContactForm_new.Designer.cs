@@ -140,44 +140,45 @@
             // 
             // panel5
             // 
+            panel5.BackColor = Color.LightGray;
             panel5.Controls.Add(lb_namefeat);
             panel5.Location = new Point(3, 3);
             panel5.Name = "panel5";
-            panel5.Size = new Size(188, 60);
+            panel5.Size = new Size(197, 74);
             panel5.TabIndex = 2;
             // 
             // lb_namefeat
             // 
-            lb_namefeat.AutoSize = true;
-            lb_namefeat.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lb_namefeat.Location = new Point(6, 14);
+            lb_namefeat.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lb_namefeat.Location = new Point(9, -3);
             lb_namefeat.Name = "lb_namefeat";
-            lb_namefeat.Size = new Size(175, 30);
+            lb_namefeat.Size = new Size(181, 77);
             lb_namefeat.TabIndex = 0;
-            lb_namefeat.Text = "CONTACT BOOK";
+            lb_namefeat.Text = "CONTACTBOOK";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panel6
             // 
             panel6.Controls.Add(lb_contentfeat);
-            panel6.Location = new Point(3, 69);
+            panel6.Location = new Point(3, 83);
             panel6.Name = "panel6";
-            panel6.Size = new Size(188, 323);
+            panel6.Size = new Size(188, 291);
             panel6.TabIndex = 2;
             // 
             // lb_contentfeat
             // 
-            lb_contentfeat.AutoSize = true;
+            lb_contentfeat.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lb_contentfeat.Location = new Point(9, 11);
             lb_contentfeat.Name = "lb_contentfeat";
-            lb_contentfeat.Size = new Size(71, 15);
+            lb_contentfeat.Size = new Size(172, 271);
             lb_contentfeat.TabIndex = 0;
             lb_contentfeat.Text = "Hello world!";
             // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.Logo_STU;
-            pictureBox2.Location = new Point(13, 399);
-            pictureBox2.Margin = new Padding(13, 4, 4, 4);
+            pictureBox2.Location = new Point(22, 381);
+            pictureBox2.Margin = new Padding(22, 4, 4, 4);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(154, 100);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -188,7 +189,8 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 8.25F, FontStyle.Italic);
-            label13.Location = new Point(3, 503);
+            label13.Location = new Point(13, 485);
+            label13.Margin = new Padding(13, 0, 3, 0);
             label13.Name = "label13";
             label13.Size = new Size(171, 13);
             label13.TabIndex = 1;
@@ -227,7 +229,7 @@
             btn_save.BackColor = Color.White;
             btn_save.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
             btn_save.ForeColor = Color.Black;
-            btn_save.Location = new Point(184, 472);
+            btn_save.Location = new Point(195, 466);
             btn_save.Name = "btn_save";
             btn_save.Size = new Size(70, 39);
             btn_save.TabIndex = 17;
@@ -279,12 +281,13 @@
             ptb_avatar.SizeMode = PictureBoxSizeMode.StretchImage;
             ptb_avatar.TabIndex = 29;
             ptb_avatar.TabStop = false;
+            ptb_avatar.Click += ptb_avatar_Click;
             // 
             // panel_status
             // 
             panel_status.Controls.Add(checkbx_block);
             panel_status.Controls.Add(label11);
-            panel_status.Location = new Point(10, 463);
+            panel_status.Location = new Point(4, 469);
             panel_status.Name = "panel_status";
             panel_status.Size = new Size(142, 38);
             panel_status.TabIndex = 28;
@@ -645,6 +648,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "ContactForm_new";
             Load += ContactForm_new_Load;
+            Click += ContactForm_new_Click;
             MouseLeave += ContactForm_new_MouseLeave;
             MouseHover += ContactForm_new_MouseHover;
             panel1.ResumeLayout(false);
@@ -653,9 +657,7 @@
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
             panel5.ResumeLayout(false);
-            panel5.PerformLayout();
             panel6.ResumeLayout(false);
-            panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel_info.ResumeLayout(false);
             panel_info.PerformLayout();

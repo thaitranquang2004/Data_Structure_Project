@@ -23,9 +23,10 @@ namespace Data_Structure_Project.DesignControls
 
         public void details(Contact d)
         {
-            lbname.Text = d.Name;
+            lbname.Text = d.Name.ToUpper();
             lbrelationship.Text = d.Relationship;
             temp_id = d.Id.ToString();
+            avatar.ImageLocation = d.Avatar;
         }
 
         public void detailsMobile(Contact d)

@@ -10,6 +10,7 @@ namespace Data_Structure_Project.Models
     internal class Contact
     {
         private int m_id;
+        private string m_avatar;
         private string m_name;
         private string m_mobile;
         private string m_mobile2;
@@ -22,10 +23,8 @@ namespace Data_Structure_Project.Models
         private string m_gender;
         private int m_status;
 
-        //public static DSCM<Mobiles> MobilesList = new DSCM<Mobiles>();
-        //public static DSCM<Emails> EmailsList = new DSCM<Emails>();
-
         public int Id { get { return m_id; } set { m_id = value; } }
+        public string Avatar { get { return m_avatar; } set { m_avatar = value; } }
         public string Name { get { return m_name; } set { m_name = value; } }
         public string Mobile { get { return m_mobile; } set { m_mobile = value; } }
         public string Mobile2 { get { return m_mobile2; } set { m_mobile2 = value; } }

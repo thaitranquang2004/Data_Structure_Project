@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Data_Structure_Project.Views
 {
@@ -131,6 +132,15 @@ namespace Data_Structure_Project.Views
                         {
                             ct.Id = rd.Next(1, 5000);
                         } while (checkid_new(ct.Id) == false);
+                        if (pathavatar != null)
+                        {
+                            CopyImage(pathavatar, ct.Id.ToString());
+                            ct.Avatar = Application.StartupPath + "\\" + ct.Id + ".jpg";
+                        }
+                        else
+                        {
+                            ct.Avatar = null;
+                        }
                         ct.Name = txt_name.Text;
                         if (checkmobile_new(txt_mobile.Text) == false) MessageBox.Show("SDT 1 da co!!");
                         else if (checkmobile_new(txt_mobile2.Text) == false) MessageBox.Show("SDT 2 da co!!");
@@ -150,6 +160,8 @@ namespace Data_Structure_Project.Views
                             ct.Status = 0;
                             dscm.insert(ct);
                             panel_info.Enabled = false;
+                            pathavatar = null;
+                            ptb_avatar.Image = Properties.Resources.icons8_user_35;
                             reset();
                             loadDetails();
                         }
@@ -425,21 +437,34 @@ namespace Data_Structure_Project.Views
         {
             if (UserListControl.id != null)
             {
-                int i = -1;
+                string name = "";
                 foreach (Contact contact in dscm.contact())
                 {
                     if (int.Parse(UserListControl.id) == contact.Id)
                     {
-                        i++;
+                        name = contact.Name;
                         break;
                     }
-                    i++;
-                    if (i > dscm.getlength() - 2) i = -1;
                 }
-                dscm.remove(i);
-                reset();
-                panel_info.Enabled = false;
-                loadDetails();
+                DialogResult dialogResult = MessageBox.Show("Remove " + name, "Are you sure ?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    int i = -1;
+                    foreach (Contact contact in dscm.contact())
+                    {
+                        if (int.Parse(UserListControl.id) == contact.Id)
+                        {
+                            i++;
+                            break;
+                        }
+                        i++;
+                        if (i > dscm.getlength() - 2) i = -1;
+                    }
+                    dscm.remove(i);
+                    reset();
+                    panel_info.Enabled = false;
+                    loadDetails();
+                }
             }
 
         }
@@ -447,12 +472,6 @@ namespace Data_Structure_Project.Views
         private void ContactForm_new_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void ContactForm_new_Click(object sender, EventArgs e)
-        {
-            reset();
-            panel_info.Enabled = false;
         }
 
         private void btn_newcontact_Click(object sender, EventArgs e)
@@ -485,17 +504,19 @@ namespace Data_Structure_Project.Views
         {
             lb_namefeat.Text = "CONTACT BOOK";
             lb_contentfeat.Text = "Click: Cancel anything";
+
         }
 
         private void ContactForm_new_MouseLeave(object sender, EventArgs e)
         {
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
             lb_namefeat.Text = "CONTACT BOOK";
             lb_contentfeat.Text = "Hello world!";
         }
 
         private void btn_newcontact_MouseHover(object sender, EventArgs e)
         {
-            btn_newcontact.BackColor = Color.Gray;
+            btn_newcontact.BackColor = Color.LightGray;
             lb_namefeat.Text = "NEW CONTACT";
             lb_contentfeat.Text = "Click: Create a new contact!";
         }
@@ -505,11 +526,12 @@ namespace Data_Structure_Project.Views
             btn_newcontact.BackColor = Color.Gainsboro;
             lb_namefeat.Text = "CONTACT BOOK";
             lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void btn_editnew_MouseHover(object sender, EventArgs e)
         {
-            btn_editnew.BackColor = Color.Gray;
+            btn_editnew.BackColor = Color.LightGray;
             lb_namefeat.Text = "EDIT CONTACT";
             lb_contentfeat.Text = "Click: Edit contact!";
         }
@@ -519,12 +541,12 @@ namespace Data_Structure_Project.Views
             btn_editnew.BackColor = Color.Gainsboro;
             lb_namefeat.Text = "CONTACT BOOK";
             lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void btn_removenew_MouseHover(object sender, EventArgs e)
         {
-            btn_removenew.BackColor = Color.Gray;
-            lb_namefeat.Font = new Font("Segoe UI", 14, FontStyle.Bold);
+            btn_removenew.BackColor = Color.LightGray;
             lb_namefeat.Text = "REMOVE CONTACT";
             lb_contentfeat.Text = "Click: Remove contact!";
         }
@@ -532,15 +554,14 @@ namespace Data_Structure_Project.Views
         private void btn_removenew_MouseLeave(object sender, EventArgs e)
         {
             btn_removenew.BackColor = Color.Gainsboro;
-            lb_namefeat.Font = new Font("Segoe UI", 16, FontStyle.Bold);
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
             lb_namefeat.Text = "CONTACT BOOK";
             lb_contentfeat.Text = "Hello world!";
         }
 
         private void btn_exportBlockNew_MouseHover(object sender, EventArgs e)
         {
-            btn_exportBlockNew.BackColor = Color.Gray;
-            lb_namefeat.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            btn_exportBlockNew.BackColor = Color.LightGray;
             lb_namefeat.Text = "EXPORT BLOCK-CONTACT";
             lb_contentfeat.Text = "Click: Export to file text!";
         }
@@ -548,149 +569,219 @@ namespace Data_Structure_Project.Views
         private void btn_exportBlockNew_MouseLeave(object sender, EventArgs e)
         {
             btn_exportBlockNew.BackColor = Color.Gainsboro;
-            lb_namefeat.Font = new Font("Segoe UI", 16, FontStyle.Bold);
             lb_namefeat.Text = "CONTACT BOOK";
             lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void txt_name_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "NAME";
+            lb_contentfeat.Text = "Text your name!!";
         }
 
         private void txt_name_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void txt_mobile_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "1st MOBILE";
+            lb_contentfeat.Text = "Text your 1st mobile!";
         }
 
         private void txt_mobile_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void txt_mobile2_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "2nd MOBILE";
+            lb_contentfeat.Text = "Text your 2nd mobile!";
         }
 
         private void txt_mobile2_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void txt_mobile3_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "3rd MOBILE";
+            lb_contentfeat.Text = "Text your 3rd mobile!";
         }
 
         private void txt_mobile3_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void txt_email_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "1st EMAIL";
+            lb_contentfeat.Text = "Text your 1st email!";
         }
 
         private void txt_email_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void txt_email2_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "2nd EMAIL";
+            lb_contentfeat.Text = "Text your 2nd email!";
         }
 
         private void txt_email2_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void txt_email3_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "3rd EMAIL";
+            lb_contentfeat.Text = "Text your 3rd email!";
         }
 
         private void txt_email3_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void txt_address_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "ADDRESS";
+            lb_contentfeat.Text = "Text your address!";
         }
 
         private void txt_address_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void combx_relationship_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "RELATIONSHIP";
+            lb_contentfeat.Text = "Choose our relationship!";
         }
 
         private void combx_relationship_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void radi_male_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "MALE";
+            lb_contentfeat.Text = "Choose their gender!";
         }
 
         private void radi_male_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void radi_female_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "FEMALE";
+            lb_contentfeat.Text = "Choose their gender!";
         }
 
         private void radi_female_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void checkbx_block_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "STATUS";
+            lb_contentfeat.Text = "If you want to block they!";
         }
 
         private void checkbx_block_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void btn_save_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "SAVE CONTACT";
+            lb_contentfeat.Text = "Save info from this form!";
         }
 
         private void btn_save_MouseLeave(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
         private void txsearch_MouseHover(object sender, EventArgs e)
         {
-
+            lb_namefeat.Text = "SEARCH";
+            lb_contentfeat.Text = "Search mobile or name!";
         }
 
         private void txsearch_MouseLeave(object sender, EventArgs e)
         {
+            lb_namefeat.Text = "CONTACT BOOK";
+            lb_contentfeat.Text = "Hello world!";
+            lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
+        }
 
+        private void ContactForm_new_Click(object sender, EventArgs e)
+        {
+            reset();
+            panel_info.Enabled = false;
+        }
+
+        public static void CopyImage(string src, string id)
+        {
+            string destination = Application.StartupPath;
+            string namefile = id + ".jpg";
+            string destinationFile = Path.Combine(destination, namefile);
+
+            File.Copy(src, destinationFile, true);
+        }
+
+        string pathavatar = null;
+        private void ptb_avatar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Choose Image(*.jpg;*.png)|*.jpg;*.png";
+
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                ptb_avatar.Image = Image.FromFile(ofd.FileName);
+                pathavatar = ofd.FileName;
+            }
         }
     }
 }

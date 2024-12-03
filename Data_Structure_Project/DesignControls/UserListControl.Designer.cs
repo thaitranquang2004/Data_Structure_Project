@@ -30,9 +30,9 @@
         {
             lbname = new Label();
             lbrelationship = new Label();
-            roundedPicturebox1 = new roundedPicturebox();
+            avatar = new roundedPicturebox();
             panel1 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)roundedPicturebox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)avatar).BeginInit();
             SuspendLayout();
             // 
             // lbname
@@ -61,18 +61,18 @@
             lbrelationship.MouseLeave += lbrelationship_MouseLeave;
             lbrelationship.MouseHover += lbrelationship_MouseHover;
             // 
-            // roundedPicturebox1
+            // avatar
             // 
-            roundedPicturebox1.Image = Properties.Resources.icons8_user_35;
-            roundedPicturebox1.Location = new Point(14, 7);
-            roundedPicturebox1.Name = "roundedPicturebox1";
-            roundedPicturebox1.Size = new Size(42, 40);
-            roundedPicturebox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            roundedPicturebox1.TabIndex = 2;
-            roundedPicturebox1.TabStop = false;
-            roundedPicturebox1.Click += roundedPicturebox1_Click;
-            roundedPicturebox1.MouseLeave += roundedPicturebox1_MouseLeave;
-            roundedPicturebox1.MouseHover += roundedPicturebox1_MouseHover;
+            avatar.Image = Properties.Resources.icons8_user_35;
+            avatar.Location = new Point(14, 7);
+            avatar.Name = "avatar";
+            avatar.Size = new Size(42, 40);
+            avatar.SizeMode = PictureBoxSizeMode.StretchImage;
+            avatar.TabIndex = 2;
+            avatar.TabStop = false;
+            avatar.Click += roundedPicturebox1_Click;
+            avatar.MouseLeave += roundedPicturebox1_MouseLeave;
+            avatar.MouseHover += roundedPicturebox1_MouseHover;
             // 
             // panel1
             // 
@@ -88,7 +88,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(panel1);
-            Controls.Add(roundedPicturebox1);
+            Controls.Add(avatar);
             Controls.Add(lbrelationship);
             Controls.Add(lbname);
             Margin = new Padding(0);
@@ -97,7 +97,7 @@
             Click += UserListControl_Click;
             MouseLeave += UserListControl_MouseLeave;
             MouseHover += UserListControl_MouseHover;
-            ((System.ComponentModel.ISupportInitialize)roundedPicturebox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)avatar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -106,7 +106,7 @@
 
         private Label lbname;
         private Label lbrelationship;
-        private roundedPicturebox roundedPicturebox1;
+        private roundedPicturebox avatar;
         private Panel panel1;
     }
 }
