@@ -41,6 +41,9 @@ namespace Data_Structure_Project.Views
             UserListControl.id = null;
             UserListControl.clicked = false;
 
+            pathavatar = null;
+            ptb_avatar.Image = Properties.Resources.icons8_user_35;
+
             txsearch.Text = null;
 
         }
@@ -101,6 +104,17 @@ namespace Data_Structure_Project.Views
                     bool successfullyParsed = int.TryParse(txt_mobile.Text, out n);
                     Contact ct = new Contact();
                     ct.Id = int.Parse(UserListControl.id);
+                    string pathavataredit = "";
+                    foreach (Contact contact in dscm.contact())
+                    {
+                        if (contact.Id == int.Parse(UserListControl.id))
+                            pathavataredit = contact.Avatar.ToString();
+                    }
+                    if (pathavatar != pathavataredit)
+                    {
+                        CopyImage(pathavatar, ct.Id.ToString());
+                        ct.Avatar = Application.StartupPath + "\\" + ct.Id + ".jpg";
+                    } else { ct.Avatar = pathavataredit; }
                     ct.Name = txt_name.Text;
                     ct.Mobile = txt_mobile.Text;
                     ct.Mobile2 = txt_mobile2.Text;
@@ -160,8 +174,6 @@ namespace Data_Structure_Project.Views
                             ct.Status = 0;
                             dscm.insert(ct);
                             panel_info.Enabled = false;
-                            pathavatar = null;
-                            ptb_avatar.Image = Properties.Resources.icons8_user_35;
                             reset();
                             loadDetails();
                         }
@@ -180,7 +192,7 @@ namespace Data_Structure_Project.Views
                 {
                     string line = p.Id + ";" + p.Name + ";" + p.Mobile + ";" + p.Mobile2 + ";" + p.Mobile3
                         + ";" + p.Email + ";" + p.Email2 + ";" + p.Email3 + ";" + p.Address + ";" + p.Relationship + ";" + p.Gender
-                        + ";" + p.Status;
+                        + ";" + p.Status + ";" + p.Avatar;
                     sw.WriteLine(line);
                 }
                 sw.Close();
@@ -210,7 +222,7 @@ namespace Data_Structure_Project.Views
                     string line = sr.ReadLine();
                     if (line == null) break;
                     string[] arr = line.Split(';');
-                    if (arr.Length == 12)
+                    if (arr.Length == 13)
                     {
                         Contact p = new Contact();
                         p.Id = int.Parse(arr[0]);
@@ -225,6 +237,7 @@ namespace Data_Structure_Project.Views
                         p.Relationship = arr[9];
                         p.Gender = arr[10];
                         p.Status = int.Parse(arr[11]);
+                        p.Avatar = arr[12];
                         dsp.insert(p);
                     }
                 }
@@ -404,6 +417,14 @@ namespace Data_Structure_Project.Views
                 {
                     if (int.Parse(UserListControl.id) == contact.Id)
                     {
+                        pathavatar = contact.Avatar;
+                        if (contact.Avatar != "")
+                        {
+                            ptb_avatar.ImageLocation = contact.Avatar;
+                        }else
+                        {
+                            ptb_avatar.Image = Properties.Resources.icons8_user_35;
+                        }
                         txt_name.Text = contact.Name;
                         txt_mobile.Text = contact.Mobile;
                         txt_mobile2.Text = contact.Mobile2;

@@ -24,37 +24,40 @@ namespace Data_Structure_Project.DesignControls
         public void details(Contact d)
         {
             lbname.Text = d.Name.ToUpper();
-            lbrelationship.Text = d.Relationship;
+            lbcontent.Text = d.Relationship;
             temp_id = d.Id.ToString();
             avatar.ImageLocation = d.Avatar;
         }
 
         public void detailsMobile(Contact d)
         {
-            lbname.Text = d.Name;
-            lbrelationship.Text = d.Mobile + " (1st Mobile)";
+            lbname.Text = d.Name.ToUpper();
+            lbcontent.Text = d.Mobile + " (1st Mobile)";
             temp_id = d.Id.ToString();
+            avatar.ImageLocation = d.Avatar;
         }
 
         public void detailsMobile2(Contact d)
         {
-            lbname.Text = d.Name;
-            lbrelationship.Text = d.Mobile2 + " (2nd Mobile)";
+            lbname.Text = d.Name.ToUpper();
+            lbcontent.Text = d.Mobile2 + " (2nd Mobile)";
             temp_id = d.Id.ToString();
+            avatar.ImageLocation = d.Avatar;
         }
 
         public void detailsMobile3(Contact d)
         {
-            lbname.Text = d.Name;
-            lbrelationship.Text = d.Mobile3 + " (3rd Mobile)";
+            lbname.Text = d.Name.ToUpper();
+            lbcontent.Text = d.Mobile3 + " (3rd Mobile)";
             temp_id = d.Id.ToString();
+            avatar.ImageLocation = d.Avatar;
         }
 
         public void searchResult(string key)
         {
             Contact contact = new Contact();
             lbname.Text = contact.Name;
-            lbrelationship.Text = contact.Relationship;
+            lbcontent.Text = contact.Relationship;
         }
 
         public static bool clicked = false;

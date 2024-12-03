@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             lbname = new Label();
-            lbrelationship = new Label();
+            lbcontent = new Label();
             avatar = new roundedPicturebox();
             panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)avatar).BeginInit();
@@ -48,18 +48,18 @@
             lbname.MouseLeave += lbname_MouseLeave;
             lbname.MouseHover += lbname_MouseHover;
             // 
-            // lbrelationship
+            // lbcontent
             // 
-            lbrelationship.AutoSize = true;
-            lbrelationship.Font = new Font("Segoe UI", 9.75F);
-            lbrelationship.Location = new Point(72, 30);
-            lbrelationship.Name = "lbrelationship";
-            lbrelationship.Size = new Size(79, 17);
-            lbrelationship.TabIndex = 1;
-            lbrelationship.Text = "Relationship";
-            lbrelationship.Click += lbrelationship_Click;
-            lbrelationship.MouseLeave += lbrelationship_MouseLeave;
-            lbrelationship.MouseHover += lbrelationship_MouseHover;
+            lbcontent.AutoSize = true;
+            lbcontent.Font = new Font("Segoe UI", 9.75F);
+            lbcontent.Location = new Point(72, 30);
+            lbcontent.Name = "lbcontent";
+            lbcontent.Size = new Size(53, 17);
+            lbcontent.TabIndex = 1;
+            lbcontent.Text = "Content";
+            lbcontent.Click += lbrelationship_Click;
+            lbcontent.MouseLeave += lbrelationship_MouseLeave;
+            lbcontent.MouseHover += lbrelationship_MouseHover;
             // 
             // avatar
             // 
@@ -89,7 +89,7 @@
             BackColor = Color.White;
             Controls.Add(panel1);
             Controls.Add(avatar);
-            Controls.Add(lbrelationship);
+            Controls.Add(lbcontent);
             Controls.Add(lbname);
             Margin = new Padding(0);
             Name = "UserListControl";
@@ -105,7 +105,7 @@
         #endregion
 
         private Label lbname;
-        private Label lbrelationship;
+        private Label lbcontent;
         private roundedPicturebox avatar;
         private Panel panel1;
     }
