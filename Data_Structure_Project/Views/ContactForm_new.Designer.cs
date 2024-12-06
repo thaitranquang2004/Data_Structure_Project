@@ -39,8 +39,6 @@
             lb_contentfeat = new Label();
             pictureBox2 = new PictureBox();
             label13 = new Label();
-            btn_savefile = new Button();
-            btn_loadfile = new Button();
             btn_save = new Button();
             panel_info = new Panel();
             ptb_avatar = new DesignControls.roundedPicturebox();
@@ -102,7 +100,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(932, 47);
+            panel1.Size = new Size(759, 47);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -195,34 +193,6 @@
             label13.Size = new Size(171, 13);
             label13.TabIndex = 1;
             label13.Text = " Tran Quang Thai  Nguyen Dai Tai";
-            // 
-            // btn_savefile
-            // 
-            btn_savefile.BackColor = Color.Gainsboro;
-            btn_savefile.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            btn_savefile.ForeColor = Color.DimGray;
-            btn_savefile.Location = new Point(768, 273);
-            btn_savefile.Name = "btn_savefile";
-            btn_savefile.Size = new Size(148, 76);
-            btn_savefile.TabIndex = 16;
-            btn_savefile.Text = "    SAVE FILE";
-            btn_savefile.TextAlign = ContentAlignment.MiddleLeft;
-            btn_savefile.UseVisualStyleBackColor = false;
-            btn_savefile.Click += btn_savefile_Click;
-            // 
-            // btn_loadfile
-            // 
-            btn_loadfile.BackColor = Color.Gainsboro;
-            btn_loadfile.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
-            btn_loadfile.ForeColor = Color.DimGray;
-            btn_loadfile.Location = new Point(768, 423);
-            btn_loadfile.Name = "btn_loadfile";
-            btn_loadfile.Size = new Size(148, 85);
-            btn_loadfile.TabIndex = 17;
-            btn_loadfile.Text = "    LOAD FILE";
-            btn_loadfile.TextAlign = ContentAlignment.MiddleLeft;
-            btn_loadfile.UseVisualStyleBackColor = false;
-            btn_loadfile.Click += btn_loadfile_Click;
             // 
             // btn_save
             // 
@@ -631,9 +601,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(932, 576);
-            Controls.Add(btn_savefile);
-            Controls.Add(btn_loadfile);
+            ClientSize = new Size(759, 576);
             Controls.Add(btn_exportBlockNew);
             Controls.Add(btn_newcontact);
             Controls.Add(btn_removenew);
@@ -647,7 +615,6 @@
             ForeColor = Color.Black;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "ContactForm_new";
-            Load += ContactForm_new_Load;
             Click += ContactForm_new_Click;
             MouseLeave += ContactForm_new_MouseLeave;
             MouseHover += ContactForm_new_MouseHover;
@@ -680,8 +647,6 @@
         private Label label1;
         private FlowLayoutPanel flowLayoutPanel1;
         private Button btn_save;
-        private Button btn_savefile;
-        private Button btn_loadfile;
         private Panel panel5;
         private Panel panel6;
         private PictureBox pictureBox1;

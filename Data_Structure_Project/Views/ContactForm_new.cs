@@ -18,8 +18,30 @@ namespace Data_Structure_Project.Views
 {
     public partial class ContactForm_new : Form
     {
+        //init--------------------------------------//
+
+        string pathavatar = null;
         DSCM<Contact> dscm = new DSCM<Contact>();
 
+        //--------------------------------------init//
+
+        //LoadForm----------------------------------//
+        public ContactForm_new()
+        {
+            InitializeComponent();
+            panel_info.Enabled = false;
+            string path = Application.StartupPath + "\\contact.txt";
+            if (System.IO.File.Exists(path))
+            {
+                dscm = Read(path);
+                reset();
+                loadDetails();
+            }
+        }
+
+        //----------------------------------LoadForm//
+
+        //Functions---------------------------------//
         private void reset()
         {
             txt_name.Text = "";
@@ -47,7 +69,6 @@ namespace Data_Structure_Project.Views
             txsearch.Text = null;
 
         }
-
         private bool checkmobile_new(string phonecheck)
         {
             foreach (Contact h in dscm.contact())
@@ -58,27 +79,106 @@ namespace Data_Structure_Project.Views
             }
             return true;
         }
-
         private bool checkid_new(int idcheck)
         {
             foreach (Contact h in dscm.contact()) if (idcheck == h.Id) return false;
             return true;
         }
-
-        public ContactForm_new()
+        private void CopyImage(string src, string id)
         {
-            InitializeComponent();
-            panel_info.Enabled = false;
+            string destination = Application.StartupPath;
+            string namefile = id + ".jpg";
+            string destinationFile = Path.Combine(destination, namefile);
+
+            File.Copy(src, destinationFile, true);
+        }
+        private bool Write(DSCM<Contact> contact, string path)
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
+                foreach (Contact p in contact.A)
+                {
+                    string line = p.Id + ";" + p.Name + ";" + p.Mobile + ";" + p.Mobile2 + ";" + p.Mobile3
+                        + ";" + p.Email + ";" + p.Email2 + ";" + p.Email3 + ";" + p.Address + ";" + p.Relationship + ";" + p.Gender
+                        + ";" + p.Status + ";" + p.Avatar;
+                    sw.WriteLine(line);
+                }
+                sw.Close();
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+        private DSCM<Contact> Read(string path)
+        {
+            DSCM<Contact> dsp = new DSCM<Contact>();
+            try
+            {
+                StreamReader sr = new StreamReader(path, Encoding.UTF8);
+                while (true)
+                {
+                    string line = sr.ReadLine();
+                    if (line == null) break;
+                    string[] arr = line.Split(';');
+                    if (arr.Length == 13)
+                    {
+                        Contact p = new Contact();
+                        p.Id = int.Parse(arr[0]);
+                        p.Name = arr[1];
+                        p.Mobile = arr[2];
+                        p.Mobile2 = arr[3];
+                        p.Mobile3 = arr[4];
+                        p.Email = arr[5];
+                        p.Email2 = arr[6];
+                        p.Email3 = arr[7];
+                        p.Address = arr[8];
+                        p.Relationship = arr[9];
+                        p.Gender = arr[10];
+                        p.Status = int.Parse(arr[11]);
+                        p.Avatar = arr[12];
+                        dsp.insert(p);
+                    }
+                }
+                sr.Close();
+            }
+            catch (Exception ex) { throw ex; }
+            return dsp;
+        }
+        private bool WriteBlock(DSCM<Contact> contact, string path)
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
+                foreach (Contact p in contact.A)
+                {
+                    if (p.Status == 1)
+                    {
+                        string line = "[ " + p.Name + " ]\n" + p.Mobile + "  " + p.Mobile2 + "  " + p.Mobile3 + "\n";
+                        sw.WriteLine(line);
+                    }
+                }
+                sw.Close();
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+        private void loadDetails()
+        {
+            resultContainer.Controls.Clear();
+            foreach (Contact data in dscm.contact())
+            {
+                UserListControl res = new UserListControl();
+                res.details(data);
+                resultContainer.Controls.Add(res);
+            }
+
         }
 
-        private void btn_new_Click(object sender, EventArgs e)
-        {
-            reset();
-            panel_info.Enabled = true;
-            combx_relationship.SelectedIndex = 0;
-            radi_male.Checked = true;
-        }
+        //---------------------------------Functions//
 
+        //Events------------------------------------//
+
+        //Save contact new or Save contact need edit
         private void btn_save_Click(object sender, EventArgs e)
         {
             if (panel_info.Enabled)
@@ -126,10 +226,16 @@ namespace Data_Structure_Project.Views
                     ct.Relationship = combx_relationship.Text;
                     if (radi_male.Checked) ct.Gender = radi_male.Text;
                     else if (radi_female.Checked) ct.Gender = radi_female.Text;
-                    dscm.edit(i, ct);
-                    panel_info.Enabled = false;
                     if (checkbx_block.Checked) ct.Status = 1;
                     else ct.Status = 0;
+                    dscm.edit(i, ct);
+                    panel_info.Enabled = false;
+                    string path = Application.StartupPath + "\\contact.txt";
+                    bool result = Write(dscm, path);
+                    if (result)
+                    {
+                        MessageBox.Show("Luu Thanh Cong!");
+                    }
                     reset();
                     loadDetails();
                 }
@@ -139,156 +245,84 @@ namespace Data_Structure_Project.Views
                     else if (txt_mobile.Text == "") MessageBox.Show("Nhap sdt!");
                     else
                     {
-                        Contact ct = new Contact();
+                        int n;
+                        bool successfullyParsed = int.TryParse(txt_mobile.Text, out n);
+                        if (successfullyParsed)
+                        {
+                            successfullyParsed = int.TryParse(txt_mobile2.Text, out n);
+                            if (successfullyParsed || txt_mobile2.Text == "")
+                            {
+                                successfullyParsed = int.TryParse(txt_mobile3.Text, out n);
+                                if (successfullyParsed || txt_mobile3.Text == "")
+                                {
 
-                        Random rd = new Random();
-                        do
-                        {
-                            ct.Id = rd.Next(1, 5000);
-                        } while (checkid_new(ct.Id) == false);
-                        if (pathavatar != null)
-                        {
-                            CopyImage(pathavatar, ct.Id.ToString());
-                            ct.Avatar = Application.StartupPath + "\\" + ct.Id + ".jpg";
+                                    Contact ct = new Contact();
+
+                                    Random rd = new Random();
+                                    do
+                                    {
+                                        ct.Id = rd.Next(1, 5000);
+                                    } while (checkid_new(ct.Id) == false);
+                                    if (pathavatar != null)
+                                    {
+                                        CopyImage(pathavatar, ct.Id.ToString());
+                                        ct.Avatar = Application.StartupPath + "\\" + ct.Id + ".jpg";
+                                    }
+                                    else
+                                    {
+                                        ct.Avatar = "";
+                                    }
+                                    ct.Name = txt_name.Text;
+                                    if (checkmobile_new(txt_mobile.Text) == false) MessageBox.Show("SDT 1 da co!!");
+                                    else if (checkmobile_new(txt_mobile2.Text) == false) MessageBox.Show("SDT 2 da co!!");
+                                    else if (checkmobile_new(txt_mobile3.Text) == false) MessageBox.Show("SDT 3 da co!!");
+                                    else
+                                    {
+                                        ct.Mobile = txt_mobile.Text;
+                                        ct.Mobile2 = txt_mobile2.Text;
+                                        ct.Mobile3 = txt_mobile3.Text;
+                                        ct.Email = txt_email.Text;
+                                        ct.Email2 = txt_email2.Text;
+                                        ct.Email3 = txt_email3.Text;
+                                        ct.Address = txt_address.Text;
+                                        ct.Relationship = combx_relationship.Text;
+                                        if (radi_male.Checked) ct.Gender = radi_male.Text;
+                                        else if (radi_female.Checked) ct.Gender = radi_female.Text;
+                                        ct.Status = 0;
+                                        dscm.insert(ct);
+                                        panel_info.Enabled = false;
+                                        string path = Application.StartupPath + "\\contact.txt";
+                                        bool result = Write(dscm, path);
+                                        if (result)
+                                        {
+                                            MessageBox.Show("Luu Thanh Cong!");
+                                        }
+                                        reset();
+                                        loadDetails();
+                                    }
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("3rd Mobile must number!!");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("2nd Mobile must number!!");
+                            }
                         }
                         else
                         {
-                            ct.Avatar = null;
-                        }
-                        ct.Name = txt_name.Text;
-                        if (checkmobile_new(txt_mobile.Text) == false) MessageBox.Show("SDT 1 da co!!");
-                        else if (checkmobile_new(txt_mobile2.Text) == false) MessageBox.Show("SDT 2 da co!!");
-                        else if (checkmobile_new(txt_mobile3.Text) == false) MessageBox.Show("SDT 3 da co!!");
-                        else
-                        {
-                            ct.Mobile = txt_mobile.Text;
-                            ct.Mobile2 = txt_mobile2.Text;
-                            ct.Mobile3 = txt_mobile3.Text;
-                            ct.Email = txt_email.Text;
-                            ct.Email2 = txt_email2.Text;
-                            ct.Email3 = txt_email3.Text;
-                            ct.Address = txt_address.Text;
-                            ct.Relationship = combx_relationship.Text;
-                            if (radi_male.Checked) ct.Gender = radi_male.Text;
-                            else if (radi_female.Checked) ct.Gender = radi_female.Text;
-                            ct.Status = 0;
-                            dscm.insert(ct);
-                            panel_info.Enabled = false;
-                            reset();
-                            loadDetails();
+                            MessageBox.Show("1st Mobile must number!!");
                         }
 
                     }
                 }
             }
-
         }
-        private bool Write(DSCM<Contact> contact, string path)
-        {
-            try
-            {
-                StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
-                foreach (Contact p in contact.A)
-                {
-                    string line = p.Id + ";" + p.Name + ";" + p.Mobile + ";" + p.Mobile2 + ";" + p.Mobile3
-                        + ";" + p.Email + ";" + p.Email2 + ";" + p.Email3 + ";" + p.Address + ";" + p.Relationship + ";" + p.Gender
-                        + ";" + p.Status + ";" + p.Avatar;
-                    sw.WriteLine(line);
-                }
-                sw.Close();
-                return true;
-            }
-            catch (Exception ex) { throw ex; }
-        }
-
-        private void btn_savefile_Click(object sender, EventArgs e)
-        {
-            string path = Application.StartupPath + "\\contact.txt";
-            bool result = Write(dscm, path);
-            if (result)
-            {
-                MessageBox.Show("Luu Thanh Cong!");
-            }
-        }
-
-        private DSCM<Contact> Read(string path)
-        {
-            DSCM<Contact> dsp = new DSCM<Contact>();
-            try
-            {
-                StreamReader sr = new StreamReader(path, Encoding.UTF8);
-                while (true)
-                {
-                    string line = sr.ReadLine();
-                    if (line == null) break;
-                    string[] arr = line.Split(';');
-                    if (arr.Length == 13)
-                    {
-                        Contact p = new Contact();
-                        p.Id = int.Parse(arr[0]);
-                        p.Name = arr[1];
-                        p.Mobile = arr[2];
-                        p.Mobile2 = arr[3];
-                        p.Mobile3 = arr[4];
-                        p.Email = arr[5];
-                        p.Email2 = arr[6];
-                        p.Email3 = arr[7];
-                        p.Address = arr[8];
-                        p.Relationship = arr[9];
-                        p.Gender = arr[10];
-                        p.Status = int.Parse(arr[11]);
-                        p.Avatar = arr[12];
-                        dsp.insert(p);
-                    }
-                }
-                sr.Close();
-            }
-            catch (Exception ex) { throw ex; }
-            return dsp;
-        }
-
-        private void btn_loadfile_Click(object sender, EventArgs e)
-        {
-            string path = Application.StartupPath + "\\contact.txt";
-            if (System.IO.File.Exists(path))
-            {
-                dscm = Read(path);
-                reset();
-                loadDetails();
-            }
-        }
-
-        private bool WriteBlock(DSCM<Contact> contact, string path)
-        {
-            try
-            {
-                StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
-                foreach (Contact p in contact.A)
-                {
-                    if (p.Status == 1)
-                    {
-                        string line = p.Mobile + " " + p.Mobile2 + " " + p.Mobile3;
-                        sw.WriteLine(line);
-                    }
-                }
-                sw.Close();
-                return true;
-            }
-            catch (Exception ex) { throw ex; }
-        }
-
-        private void loadDetails()
-        {
-            resultContainer.Controls.Clear();
-            foreach (Contact data in dscm.contact())
-            {
-                UserListControl res = new UserListControl();
-                res.details(data);
-                resultContainer.Controls.Add(res);
-            }
-
-        }
-
+        
+        //Search by phonenumber or Name
         private void txsearch_TextChanged(object sender, EventArgs e)
         {
             if (txsearch.Text.Length >= 1)
@@ -298,44 +332,7 @@ namespace Data_Structure_Project.Views
                 if (successfullyParsed)
                 {
                     resultContainer.Controls.Clear();
-                    List<Contact> contacts = new List<Contact>();
                     foreach (Contact h in dscm.contact())
-                    {
-                        string phone = "";
-                        for (int i = 0; i < txsearch.Text.Length; i++)
-                        {
-                            if (i == h.Mobile.Length) break;
-                            phone += h.Mobile[i];
-                            if (i == h.Mobile.Length - 1) break;
-                        }
-                        if (String.Compare(txsearch.Text, phone, true) == 0)
-                        {
-                            contacts.Add(h);
-                        }
-                        string phone2 = "";
-                        for (int i = 0; i < txsearch.Text.Length; i++)
-                        {
-                            if (i == h.Mobile2.Length) break;
-                            phone2 += h.Mobile2[i];
-                            if (i == h.Mobile2.Length - 1) break;
-                        }
-                        if (String.Compare(txsearch.Text, phone2, true) == 0)
-                        {
-                            contacts.Add(h);
-                        }
-                        string phone3 = "";
-                        for (int i = 0; i < txsearch.Text.Length; i++)
-                        {
-                            if (i == h.Mobile3.Length) break;
-                            phone3 += h.Mobile3[i];
-                            if (i == h.Mobile3.Length - 1) break;
-                        }
-                        if (String.Compare(txsearch.Text, phone3, true) == 0)
-                        {
-                            contacts.Add(h);
-                        }
-                    }
-                    foreach (Contact h in contacts)
                     {
                         string phone = "";
                         for (int i = 0; i < txsearch.Text.Length; i++)
@@ -377,7 +374,6 @@ namespace Data_Structure_Project.Views
                             resultContainer.Controls.Add(res);
                         }
                     }
-
                 }
                 else
                 {
@@ -407,7 +403,8 @@ namespace Data_Structure_Project.Views
                 panel_info.Enabled = false;
             }
         }
-
+        
+        //Click to Show Contact's info
         private void timer_Tick(object sender, EventArgs e)
         {
             if (UserListControl.clicked == true)
@@ -443,7 +440,21 @@ namespace Data_Structure_Project.Views
                 UserListControl.clicked = false;
             }
         }
+        
+        //Add avatar for Contact
+        private void ptb_avatar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Choose Image(*.jpg;*.png)|*.jpg;*.png";
 
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                ptb_avatar.Image = Image.FromFile(ofd.FileName);
+                pathavatar = ofd.FileName;
+            }
+        }
+        
+        //Enable panel_info for Edit Contact
         private void btn_editnew_Click(object sender, EventArgs e)
         {
             if (UserListControl.id != null)
@@ -453,7 +464,8 @@ namespace Data_Structure_Project.Views
             }
 
         }
-
+        
+        //Remove Contact
         private void btn_removenew_Click(object sender, EventArgs e)
         {
             if (UserListControl.id != null)
@@ -476,25 +488,36 @@ namespace Data_Structure_Project.Views
                         if (int.Parse(UserListControl.id) == contact.Id)
                         {
                             i++;
+                            try
+                            {
+                                string filetoremove = Application.StartupPath + "\\" + contact.Id.ToString() + ".jpg";
+                                if (File.Exists(filetoremove)) { 
+                                    File.Delete(filetoremove);
+                                }
+                            } catch (DirectoryNotFoundException)
+                            {
+                                MessageBox.Show("Directory not found !");
+                            }
                             break;
                         }
                         i++;
                         if (i > dscm.getlength() - 2) i = -1;
                     }
                     dscm.remove(i);
+                    string path = Application.StartupPath + "\\contact.txt";
+                    bool result = Write(dscm, path);
+                    if (result)
+                    {
+                        MessageBox.Show("Luu Thanh Cong!");
+                    }
                     reset();
                     panel_info.Enabled = false;
                     loadDetails();
                 }
             }
-
         }
 
-        private void ContactForm_new_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        //Enable panel_info for New Contact
         private void btn_newcontact_Click(object sender, EventArgs e)
         {
             reset();
@@ -503,7 +526,8 @@ namespace Data_Structure_Project.Views
             combx_relationship.SelectedIndex = 0;
             radi_male.Checked = true;
         }
-
+        
+        //Export Block Contact's Phone
         private void btn_exportBlockNew_Click(object sender, EventArgs e)
         {
             string path = Application.StartupPath + "\\PhoneNumberBlock.txt";
@@ -521,6 +545,16 @@ namespace Data_Structure_Project.Views
             }
         }
 
+        //Click to cancel anything
+        private void ContactForm_new_Click(object sender, EventArgs e)
+        {
+            reset();
+            panel_info.Enabled = false;
+        }
+
+        //------------------------------------Events//
+
+        //MouseHover && Mouse Leave ----------------------------------------//
         private void ContactForm_new_MouseHover(object sender, EventArgs e)
         {
             lb_namefeat.Text = "CONTACT BOOK";
@@ -777,32 +811,6 @@ namespace Data_Structure_Project.Views
             lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
-        private void ContactForm_new_Click(object sender, EventArgs e)
-        {
-            reset();
-            panel_info.Enabled = false;
-        }
-
-        public static void CopyImage(string src, string id)
-        {
-            string destination = Application.StartupPath;
-            string namefile = id + ".jpg";
-            string destinationFile = Path.Combine(destination, namefile);
-
-            File.Copy(src, destinationFile, true);
-        }
-
-        string pathavatar = null;
-        private void ptb_avatar_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Choose Image(*.jpg;*.png)|*.jpg;*.png";
-
-            if(ofd.ShowDialog() == DialogResult.OK)
-            {
-                ptb_avatar.Image = Image.FromFile(ofd.FileName);
-                pathavatar = ofd.FileName;
-            }
-        }
+        //MouseHover && Mouse Leave ----------------------------------------//
     }
 }
