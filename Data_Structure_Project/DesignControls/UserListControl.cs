@@ -18,9 +18,15 @@ namespace Data_Structure_Project.DesignControls
             InitializeComponent();
         }
 
+        //init-------------------------------------//
+        
+        public static bool clicked = false;
         string temp_id;
         public static string id;
 
+        //-------------------------------------init//
+
+        //Functions--------------------------------//
         public void details(Contact d)
         {
             lbname.Text = d.Name.ToUpper();
@@ -53,15 +59,9 @@ namespace Data_Structure_Project.DesignControls
             avatar.ImageLocation = d.Avatar;
         }
 
-        public void searchResult(string key)
-        {
-            Contact contact = new Contact();
-            lbname.Text = contact.Name;
-            lbcontent.Text = contact.Relationship;
-        }
+        //--------------------------------Functions//
 
-        public static bool clicked = false;
-
+        //MouseHover, MouseLeave && Click--------------//
         private void UserListControl_MouseHover(object sender, EventArgs e)
         {
             this.BackColor = Color.WhiteSmoke;
@@ -129,5 +129,7 @@ namespace Data_Structure_Project.DesignControls
             this.BackColor = Color.Silver;
             id = temp_id;
         }
+
+        //--------------MouseHover, MouseLeave && Click//
     }
 }

@@ -97,7 +97,7 @@ namespace Data_Structure_Project.Views
             try
             {
                 StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
-                foreach (Contact p in contact.A)
+                foreach (Contact p in contact.contact())
                 {
                     string line = p.Id + ";" + p.Name + ";" + p.Mobile + ";" + p.Mobile2 + ";" + p.Mobile3
                         + ";" + p.Email + ";" + p.Email2 + ";" + p.Email3 + ";" + p.Address + ";" + p.Relationship + ";" + p.Gender
@@ -149,7 +149,7 @@ namespace Data_Structure_Project.Views
             try
             {
                 StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
-                foreach (Contact p in contact.A)
+                foreach (Contact p in contact.contact())
                 {
                     if (p.Status == 1)
                     {
@@ -811,6 +811,6 @@ namespace Data_Structure_Project.Views
             lb_namefeat.TextAlign = ContentAlignment.MiddleCenter;
         }
 
-        //MouseHover && Mouse Leave ----------------------------------------//
+        //----------------------------------------MouseHover && Mouse Leave//
     }
 }

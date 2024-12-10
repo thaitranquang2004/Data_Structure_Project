@@ -52,17 +52,6 @@ namespace Data_Structure_Project.Controls
             return a.Length;
         }
 
-        public T[] A
-        {
-            get { return a; }
-            set { a = value; }
-        }
-
-        public int N
-        {
-            set; get;
-        }
-
         public List<T> contact() {
             List<T> list = new List<T>();
             for (int i = 0; i < this.n; i++)
